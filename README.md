@@ -168,7 +168,7 @@ Abaixo estão exemplos de especificação textual no padrão adotado para o proj
 
 ## 5. Modelagem de dados vs. Django (mapeamento)
 
-O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura sugerida é:
+O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré definida:
 
 - **accounts**
   - `User(AbstractUser)` com campo `tipo_usuario`
