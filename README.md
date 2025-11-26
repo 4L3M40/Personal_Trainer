@@ -143,13 +143,13 @@ Abaixo estão exemplos de especificação textual no padrão adotado para o proj
 - **Ator primário:** Personal Trainer  
 - **Pré-condições:** PT autenticado; aluno existente.  
 - **Fluxo principal:**  
-  1. PT abre perfil do aluno → aba Treinos.  
-  2. Clica em “Criar novo treino”.  
-  3. Informa nome, datas e observações gerais.  
-  4. Cria splits A/B/C…  
-  5. Adiciona exercícios da biblioteca e configura séries/reps/intervalo/etc.  
-  6. Reordena itens se necessário.  
-  7. Salva plano.  
+  1 - PT abre perfil do aluno → aba Treinos.  
+  2 - Clica em “Criar novo treino”.  
+  3 - Informa nome, datas e observações gerais.  
+  4 - Cria splits A/B/C…  
+  5 - Adiciona exercícios da biblioteca e configura séries/reps/intervalo/etc.  
+  6 - Reordena itens se necessário.  
+  7 - Salva plano.  
 - **Pós-condição:** plano disponível para o aluno.  
 - **Exceções:** exercício inexistente na biblioteca → PT deve cadastrar antes.
 
@@ -157,9 +157,9 @@ Abaixo estão exemplos de especificação textual no padrão adotado para o proj
 - **Ator primário:** Aluno  
 - **Pré-condições:** aluno autenticado; treino ativo.  
 - **Fluxo principal:**  
-  1. Aluno abre “Iniciar treino”.  
-  2. Para cada exercício registra carga e repetições.  
-  3. Finaliza treino e envia.  
+  1 - Aluno abre “Iniciar treino”.  
+  2 - Para cada exercício registra carga e repetições.  
+  3 - Finaliza treino e envia.  
 - **Pós-condição:** registros aparecem para PT em “Logbook”.
 
 > Se necessário, todas as especificações podem ser escritas no mesmo padrão.
