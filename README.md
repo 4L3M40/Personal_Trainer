@@ -131,6 +131,9 @@ Este repositório contém a documentação inicial do **Couth App**, uma platafo
 
 ### 4.1 Diagrama geral
 Diagrama geral de casos de uso cobrindo Personal Trainer e Aluno, com módulos da fase 1.
+<img width="600" height="1190" alt="Image" src="https://github.com/user-attachments/assets/5d46b8ee-b659-4eb6-9dc0-7eaa625c6d8a" />
+
+---
 
 ### 4.2 Especificação textual de Casos de Uso (modelo)
 
