@@ -190,12 +190,11 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura suger
 
 ---
 
-## 6. Wireframes — o que fazer e onde fazer
+## 6. Wireframes — (Falta Fazer)
 
 ### Onde fazer
 - **Figma** (melhor custo/benefício e padrão do mercado).
 - Alternativas: **Penpot** (open‑source) ou **Whimsical**.
-- Sugestão prática: fazer no Figma e exportar PNG/PDF para entrega.
 
 ### Wireframes mínimos por persona
 
@@ -230,7 +229,7 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura suger
 - Vantagem: experiência mais “app‑like”.  
 - Custo/tempo maior agora.
 
-**Recomendação:** começar com **Rota A** (admin server‑rendered + Tailwind).  
+- Começar com **Rota A** (admin server‑rendered + Tailwind).  
 O app aluno pode ser web responsivo nesta fase; migrar para mobile nativo na fase 2 se necessário.
 
 ---
