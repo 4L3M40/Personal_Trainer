@@ -162,7 +162,6 @@ Abaixo estão exemplos de especificação textual no padrão adotado para o proj
   3 - Finaliza treino e envia.  
 - **Pós-condição:** registros aparecem para PT em “Logbook”.
 
-> Se necessário, todas as especificações podem ser escritas no mesmo padrão.
 
 ---
 
