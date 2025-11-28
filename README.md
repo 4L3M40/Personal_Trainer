@@ -193,7 +193,9 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 ---
 ## 5.1 DER / Banco de Dados
 
-O DER representa os módulos principais do sistema:
+![Image](https://github.com/user-attachments/assets/ad8153df-7d93-4e0b-bbb5-7a69c82f2cf7)
+
+## O DER representa os módulos principais do sistema:
 
 - Usuários e Clientes: cadastros e vínculo personal ↔ aluno
 
