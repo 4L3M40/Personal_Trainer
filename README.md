@@ -191,6 +191,25 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 **Observação importante:** `clientes.id_usuario_aluno` é **UNIQUE** (1:1 aluno ↔ cliente), adequado para controle de acesso.
 
 ---
+## 5.1 DER / Banco de Dados
+
+![Image](https://github.com/user-attachments/assets/ad8153df-7d93-4e0b-bbb5-7a69c82f2cf7)
+
+## O DER representa os módulos principais do sistema:
+
+- Usuários e Clientes: cadastros e vínculo personal ↔ aluno
+
+- Treinos: planos, splits, exercícios e logbook do aluno
+
+- Dietas: planos alimentares, refeições, alimentos e checklist de consumo
+
+- Anamnese: perguntas padrão, envios e respostas do aluno
+
+- Acompanhamento e Gestão: avaliações físicas, progresso (peso/fotos), exames, agenda, feedbacks e notas do personal
+
+O diagrama foi gerado no MySQL Workbench a partir do script SQL completo do schema.
+
+---
 
 ## 6. Wireframes — (Falta Fazer)
 
