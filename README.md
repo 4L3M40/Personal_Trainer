@@ -262,12 +262,12 @@ O app aluno pode ser web responsivo nesta fase; migrar para mobile nativo na fas
 3 - Wireframes no Figma (baixa fidelidade primeiro).  
 4 - Protótipo navegável usando os HTMLs como base.  
 5 - Implementação Django por módulos, priorizando:
-   1 - CRM + Bibliotecas  
-   2 - Treinos  
-   3 - Dieta  
-   4 - Anamnese  
-   5 - Logbook/Progresso  
-   6 - Agenda/Feedbacks
+    - CRM + Bibliotecas.
+    - Treinos. 
+    - Dieta.  
+    - Anamnese.  
+    - Logbook/Progresso.  
+    - Agenda/Feedbacks.
 
 ---
 
