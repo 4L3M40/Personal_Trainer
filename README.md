@@ -261,17 +261,32 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 ## Configurações (builder de anamnese + conta)
 <img width="1919" height="818" alt="Image" src="https://github.com/user-attachments/assets/d0bd28b9-b324-4450-8145-67cf0fc9538b" />
 
+---
+
 #### App Aluno
 ## Login 
 <img width="512" height="768" alt="Image" src="https://github.com/user-attachments/assets/b6b45409-48c2-4467-9721-a2c00a37549b" />
 
 ## Início (peso + pendências + mensagens) 
-
+<img width="1901" height="832" alt="Image" src="https://github.com/user-attachments/assets/57b53ff4-0a39-4c60-bae9-69e98cb50da7" />
 
 ## Treinos (lista, split semanal, detalhe/iniciar, logbook) 
-
+<img width="1899" height="830" alt="Image" src="https://github.com/user-attachments/assets/b3869607-7bb6-4f60-b2e3-c02e20f8deb4" />
 
 ## Dieta (lista, detalhe, refeições do dia) 
+<img width="1900" height="836" alt="Image" src="https://github.com/user-attachments/assets/8bdc923d-076d-46c8-b85b-5608cc9c6509" />
+
+## Prgresso
+**Fotos**
+<img width="1900" height="829" alt="Image" src="https://github.com/user-attachments/assets/95bea171-c952-46ff-a8db-a18eea478b01" />
+
+**Medidas**
+
+
+**Gráficos**
+
+
+**Exames**
 
 
 ## Perfil/Utilitários (exames, avaliações, fotos, anamneses, logout)
