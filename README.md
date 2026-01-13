@@ -106,24 +106,39 @@ Este repositório contém a documentação inicial do **Couth App**, uma platafo
 
 ## 3. Requisitos Não Funcionais (RNF)
 
-- **Usabilidade:**  
-  - app aluno com no máximo **3 cliques** para acessar treinos/dietas;  
-  - admin com navegação lateral fixa.
-- **Design / Identidade:** visual premium/humano, energia/performance/saúde.
-- **Responsividade:**  
-  - admin otimizado para desktop;  
-  - app aluno mobile‑first;  
-  - web aluno responsiva.
-- **Performance:** páginas‑chave (lista de clientes, treino/dieta) carregam em **< 2s** em 4G médio.
-- **Segurança:**  
-  - senhas com hash forte (Django PBKDF2/Argon2);  
-  - JWT/Session segura;  
-  - controle de acesso por tipo de usuário.
-- **Disponibilidade:** 99% mensal em produção.
-- **Persistência:** MySQL conforme modelo.
-- **Integrações externas:** não previstas na fase 1.
-- **Prazo macro:** lançamento em **10/03/2026**.
-- **LGPD:** consentimento para dados sensíveis (saúde, fotos, exames) e trilha de auditoria de acesso.
+### RNF1 — Usabilidade  
+- **RNF1.1** O app do aluno deve permitir acesso aos treinos e dietas com no máximo **3 cliques**.  
+- **RNF1.2** O painel administrativo deve possuir **navegação lateral fixa**.  
+- **RNF1.3** O sistema deve adotar **design premium e humano**, alinhado a energia, performance e saúde.
+
+### RNF2 — Responsividade  
+- **RNF2.1** O painel administrativo deve ser **otimizado para desktop**.  
+- **RNF2.2** O app do aluno deve ser desenvolvido em abordagem **mobile-first**.  
+- **RNF2.3** A versão web do aluno deve ser **responsiva**.
+
+### RNF3 — Performance  
+- **RNF3.1** Páginas-chave (lista de clientes, visualização de treino e dieta) devem carregar em **menos de 2 segundos** em conexão 4G média.
+
+### RNF4 — Segurança  
+- **RNF4.1** Senhas devem ser armazenadas com **hash forte** (PBKDF2 ou Argon2 – padrão Django).  
+- **RNF4.2** O sistema deve utilizar **JWT ou sessão segura** para autenticação.  
+- **RNF4.3** Deve haver **controle de acesso por tipo de usuário**.
+
+### RNF5 — Disponibilidade  
+- **RNF5.1** O sistema deve garantir **99% de disponibilidade mensal** em produção.
+ 
+### RNF6 — Persistência  
+- **RNF6.1** Os dados devem ser persistidos em **MySQL**, conforme modelo definido.
+ 
+### RNF7 — Integrações  
+- **RNF7.1** Não serão realizadas **integrações externas na fase 1**.
+ 
+### RNF8 — Conformidade Legal (LGPD)  
+- **RNF8.1** O sistema deve solicitar **consentimento explícito** para dados sensíveis (saúde, fotos e exames).  
+- **RNF8.2** Deve existir **trilha de auditoria** para acesso a dados sensíveis.
+
+### RNF9 — Prazo  
+- **RNF9.1** O lançamento do sistema deve ocorrer até **10/03/2026**.
 
 ---
 
