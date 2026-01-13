@@ -262,11 +262,21 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 <img width="1919" height="818" alt="Image" src="https://github.com/user-attachments/assets/d0bd28b9-b324-4450-8145-67cf0fc9538b" />
 
 #### App Aluno
-- Login  
-- Início (peso + pendências + mensagens)  
-- Treinos (lista, split semanal, detalhe/iniciar, logbook)  
-- Dieta (lista, detalhe, refeições do dia)  
-- Perfil/Utilitários (exames, avaliações, fotos, anamneses, logout)
+## Login 
+
+
+## Início (peso + pendências + mensagens) 
+
+
+## Treinos (lista, split semanal, detalhe/iniciar, logbook) 
+
+
+## Dieta (lista, detalhe, refeições do dia) 
+
+
+## Perfil/Utilitários (exames, avaliações, fotos, anamneses, logout)
+
+
 
 ---
 
