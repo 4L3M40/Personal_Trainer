@@ -281,15 +281,16 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 <img width="1900" height="829" alt="Image" src="https://github.com/user-attachments/assets/95bea171-c952-46ff-a8db-a18eea478b01" />
 
 **Medidas**
-
+<img width="1901" height="829" alt="Image" src="https://github.com/user-attachments/assets/99d0dd22-eb4d-4753-82b6-79f2fe64ae18" />
 
 **Gráficos**
 
 
 **Exames**
-
+<img width="1900" height="826" alt="Image" src="https://github.com/user-attachments/assets/796a816c-67fa-4a8e-8d65-c3ddb74f6a4d" />
 
 ## Perfil/Utilitários (exames, avaliações, fotos, anamneses, logout)
+<img width="1902" height="833" alt="image" src="https://github.com/user-attachments/assets/9ef31018-f13c-405e-b024-9e2523091d33" />
 
 
 
