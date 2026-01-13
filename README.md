@@ -235,14 +235,19 @@ O diagrama foi gerado no MySQL Workbench a partir do script SQL completo do sche
 <img width="1536" height="1024" alt="Image" src="https://github.com/user-attachments/assets/9e51572f-4aed-493d-8f21-14ab04ac3cd9" />
 
 ## Dashboard  
+![Image](https://github.com/user-attachments/assets/d278693b-313e-4876-8bd4-dbe8edb1bd15)
 
 ## Clientes (lista + filtros + botão novo)  
 
+
 ## Perfil do cliente (abas): Progresso, Anamnese, Avaliações, Dietas, Treinos, Exames, Feedbacks, Logbook, Fotos, Notas  
+
 
 ## Bibliotecas: Exercícios, Treinos‑modelo, Alimentos, Cardápios‑modelo  
 
+
 ## Agenda  
+
 
 ## Configurações (builder de anamnese + conta)
 
