@@ -222,8 +222,6 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 
 - Acompanhamento e Gestão: avaliações físicas, progresso (peso/fotos), exames, agenda, feedbacks e notas do personal
 
-O diagrama foi gerado no MySQL Workbench a partir do script SQL completo do schema.
-
 ---
 
 ## 6. Wireframes — (Falta Fazer)
@@ -231,6 +229,7 @@ O diagrama foi gerado no MySQL Workbench a partir do script SQL completo do sche
 ### Wireframes mínimos por persona
 
 #### Admin Web (Personal)
+
 ## Login
 <img width="1536" height="1024" alt="Image" src="https://github.com/user-attachments/assets/9e51572f-4aed-493d-8f21-14ab04ac3cd9" />
 
@@ -257,9 +256,10 @@ O diagrama foi gerado no MySQL Workbench a partir do script SQL completo do sche
 <img width="1919" height="1028" alt="Image" src="https://github.com/user-attachments/assets/c1888625-15bb-4bf7-96cf-7d59772dd3f1" />
 
 ## Agenda  
-
+<img width="1917" height="1027" alt="Image" src="https://github.com/user-attachments/assets/5d2b45da-0613-46b5-96f5-e728cbefa3e8" />
 
 ## Configurações (builder de anamnese + conta)
+<img width="1919" height="818" alt="Image" src="https://github.com/user-attachments/assets/d0bd28b9-b324-4450-8145-67cf0fc9538b" />
 
 #### App Aluno
 - Login  
