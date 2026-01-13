@@ -241,7 +241,7 @@ O diagrama foi gerado no MySQL Workbench a partir do script SQL completo do sche
 <img width="1919" height="815" alt="Image" src="https://github.com/user-attachments/assets/1ec30028-8815-40aa-8088-a73d54a3617b" />
 
 ## Perfil do cliente (abas): Progresso, Anamnese, Avaliações, Dietas, Treinos, Exames, Feedbacks, Logbook, Fotos, Notas  
-
+<img width="1918" height="1022" alt="Image" src="https://github.com/user-attachments/assets/edcd30c6-cb94-42e8-bc49-4d429883fe26" />
 
 ## Bibliotecas: Exercícios, Treinos‑modelo, Alimentos, Cardápios‑modelo  
 
