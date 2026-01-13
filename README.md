@@ -245,13 +245,16 @@ O diagrama foi gerado no MySQL Workbench a partir do script SQL completo do sche
 
 ## Bibliotecas: 
 **Exercícios**
+![Image](https://github.com/user-attachments/assets/5e55e44d-4b16-44ed-8101-19f59e85a742)
 
 **Treinos‑modelo** 
+<img width="1919" height="1029" alt="Image" src="https://github.com/user-attachments/assets/80830945-9629-48ee-82d7-658e99f7c352" />
 
-** Alimentos**  
+**Alimentos** 
+<img width="1919" height="819" alt="Image" src="https://github.com/user-attachments/assets/a9b893d3-a603-4abe-a42d-9d4abb73d10e" />
 
-** Cardápios‑modelo**   
-
+**Cardápios‑modelo** 
+<img width="1919" height="1028" alt="Image" src="https://github.com/user-attachments/assets/c1888625-15bb-4bf7-96cf-7d59772dd3f1" />
 
 ## Agenda  
 
