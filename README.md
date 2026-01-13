@@ -263,7 +263,7 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 
 #### App Aluno
 ## Login 
-
+<img width="512" height="768" alt="Image" src="https://github.com/user-attachments/assets/b6b45409-48c2-4467-9721-a2c00a37549b" />
 
 ## Início (peso + pendências + mensagens) 
 
