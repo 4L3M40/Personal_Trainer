@@ -224,7 +224,7 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 
 ---
 
-## 6. Wireframes — (Falta Fazer)
+## 6. Wireframes 
 
 ### Wireframes mínimos por persona
 
@@ -263,7 +263,7 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 
 ---
 
-#### App Aluno
+# App Aluno
 ## Login 
 <img width="512" height="768" alt="Image" src="https://github.com/user-attachments/assets/b6b45409-48c2-4467-9721-a2c00a37549b" />
 
@@ -284,15 +284,13 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 <img width="1901" height="829" alt="Image" src="https://github.com/user-attachments/assets/99d0dd22-eb4d-4753-82b6-79f2fe64ae18" />
 
 **Gráficos**
-
+<img width="1900" height="826" alt="Image" src="https://github.com/user-attachments/assets/796a816c-67fa-4a8e-8d65-c3ddb74f6a4d" />
 
 **Exames**
 <img width="1900" height="826" alt="Image" src="https://github.com/user-attachments/assets/796a816c-67fa-4a8e-8d65-c3ddb74f6a4d" />
 
 ## Perfil/Utilitários (exames, avaliações, fotos, anamneses, logout)
 <img width="1902" height="833" alt="image" src="https://github.com/user-attachments/assets/9ef31018-f13c-405e-b024-9e2523091d33" />
-
-
 
 ---
 
@@ -316,8 +314,8 @@ O app aluno pode ser web responsivo nesta fase; migrar para mobile nativo na fas
 
 ## 8. Próximos passos
 
-1 - Fechar documentação de requisitos. OK.
-2 - Diagramas: casos de uso (geral + módulos), classes e sequência. OK.
+1 - Fechar documentação de requisitos. OK
+2 - Diagramas: casos de uso (geral + módulos), classes e sequência. OK
 3 - Wireframes no Figma (baixa fidelidade primeiro).  
 4 - Protótipo navegável usando os HTMLs como base.  
 5 - Implementação Django por módulos, priorizando:
