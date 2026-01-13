@@ -314,18 +314,17 @@ O app aluno pode ser web responsivo nesta fase; migrar para mobile nativo na fas
 
 ## 8. Próximos passos
 
-1 - Fechar documentação de requisitos. OK
-2 - Diagramas: casos de uso (geral + módulos), classes e sequência. OK
-3 - Wireframes no Figma (baixa fidelidade primeiro).  
-4 - Protótipo navegável usando os HTMLs como base.  
-5 - Implementação Django por módulos, priorizando:
-   
-    - CRM + Bibliotecas.
-    - Treinos. 
-    - Dieta.  
-    - Anamnese.  
-    - Logbook/Progresso.  
-    - Agenda/Feedbacks.
+1. Fechar documentação de requisitos. – OK  
+2. Diagramas: casos de uso (geral + módulos), classes e sequência. – OK  
+3. Wireframes no Figma (baixa fidelidade primeiro). – OK  
+4. Protótipo navegável usando os HTMLs como base.  
+5. Implementação Django por módulos, priorizando:
+   - CRM + Bibliotecas.
+   - Treinos.
+   - Dieta.
+   - Anamnese.
+   - Logbook/Progresso.
+   - Agenda/Feedbacks.
 
 ---
 
