@@ -228,14 +228,10 @@ O diagrama foi gerado no MySQL Workbench a partir do script SQL completo do sche
 
 ## 6. Wireframes — (Falta Fazer)
 
-### Onde fazer
-- **Figma** (melhor custo/benefício e padrão do mercado).
-- Alternativas: **Penpot** (open‑source) ou **Whimsical**.
-
 ### Wireframes mínimos por persona
 
 #### Admin Web (Personal)
-- Login  
+- Login 
 - Dashboard  
 - Clientes (lista + filtros + botão novo)  
 - Perfil do cliente (abas): Progresso, Anamnese, Avaliações, Dietas, Treinos, Exames, Feedbacks, Logbook, Fotos, Notas  
@@ -272,8 +268,8 @@ O app aluno pode ser web responsivo nesta fase; migrar para mobile nativo na fas
 
 ## 8. Próximos passos
 
-1 -Fechar documentação de requisitos.  
-2 - Diagramas: casos de uso (geral + módulos), classes e sequência.  
+1 -Fechar documentação de requisitos. OK
+2 - Diagramas: casos de uso (geral + módulos), classes e sequência.  OK
 3 - Wireframes no Figma (baixa fidelidade primeiro).  
 4 - Protótipo navegável usando os HTMLs como base.  
 5 - Implementação Django por módulos, priorizando:
