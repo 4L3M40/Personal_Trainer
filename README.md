@@ -238,7 +238,7 @@ O diagrama foi gerado no MySQL Workbench a partir do script SQL completo do sche
 ![Image](https://github.com/user-attachments/assets/d278693b-313e-4876-8bd4-dbe8edb1bd15)
 
 ## Clientes (lista + filtros + botão novo)  
-
+<img width="1919" height="815" alt="Image" src="https://github.com/user-attachments/assets/1ec30028-8815-40aa-8088-a73d54a3617b" />
 
 ## Perfil do cliente (abas): Progresso, Anamnese, Avaliações, Dietas, Treinos, Exames, Feedbacks, Logbook, Fotos, Notas  
 
