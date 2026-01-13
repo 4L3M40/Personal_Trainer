@@ -231,13 +231,20 @@ O diagrama foi gerado no MySQL Workbench a partir do script SQL completo do sche
 ### Wireframes mínimos por persona
 
 #### Admin Web (Personal)
-- Login 
-- Dashboard  
-- Clientes (lista + filtros + botão novo)  
-- Perfil do cliente (abas): Progresso, Anamnese, Avaliações, Dietas, Treinos, Exames, Feedbacks, Logbook, Fotos, Notas  
-- Bibliotecas: Exercícios, Treinos‑modelo, Alimentos, Cardápios‑modelo  
-- Agenda  
-- Configurações (builder de anamnese + conta)
+## Login
+<img width="1536" height="1024" alt="Image" src="https://github.com/user-attachments/assets/9e51572f-4aed-493d-8f21-14ab04ac3cd9" />
+
+## Dashboard  
+
+## Clientes (lista + filtros + botão novo)  
+
+## Perfil do cliente (abas): Progresso, Anamnese, Avaliações, Dietas, Treinos, Exames, Feedbacks, Logbook, Fotos, Notas  
+
+## Bibliotecas: Exercícios, Treinos‑modelo, Alimentos, Cardápios‑modelo  
+
+## Agenda  
+
+## Configurações (builder de anamnese + conta)
 
 #### App Aluno
 - Login  
