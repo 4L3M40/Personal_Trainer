@@ -1,4 +1,5 @@
-# Couth App — Documentação de Modelagem (Fase 1).
+# Couth App — Documentação de Modelagem (Fase 1)
+
 
 Este repositório contém a documentação inicial do **Couth App**, uma plataforma para **Personal Trainers** gerenciarem alunos, treinos e dietas, enquanto os alunos acompanham e registram sua evolução.
 
