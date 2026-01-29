@@ -221,7 +221,7 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 
 - Anamnese: perguntas padrão, envios e respostas do aluno
 
-- Acompanhamento e Gestão: avaliações físicas, progresso (peso/fotos), exames, agenda, feedbacks e notas do personal
+- Acompanhamento e Gestão: avaliações físicas, progresso (peso/fotos), exames, agenda, feedbacks e notas do personal.
 
 ---
 
