@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Clientes • Personal Trainer{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h1 class="h3 mb-0">Clientes</h1>
+  <a class="btn btn-brand btn-pill" href="{% url 'crm:client_create' %}">+ Novo Cliente</a>
+</div>
+
+<form class="row g-2 align-items-center mb-3" method="get">
+  <div class="col-12 col-md-6">
+    <input class="form-control form-control-lg" name="q" value="{{ request.GET.q }}" placeholder="Buscar clientes...">
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-outline-secondary btn-pill" type="submit">Filtrar</button>
+  </div>
+</form>
+
+<div class="card">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead>
+          <tr>
+            <th style="width:110px;">Foto</th>
+            <th>Nome</th>
+            <th>Status</th>
+            <th>Plano</th>
+            <th>Última atividade</th>
+            <th style="width:110px;">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in clients %}
+          <tr>
+            <td>
+              <div class="brand-mark" style="width:42px;height:42px;border-radius:999px;">
+                {{ c.full_name|slice:":1"|upper }}{{ c.full_name|slice:"1:2"|upper }}
+              </div>
+            </td>
+            <td class="fw-bold">{{ c.full_name }}</td>
+            <td>
+              {% if c.status == 'active' %}
+                <span class="badge text-bg-success">Ativo</span>
+              {% elif c.status == 'paused' %}
+                <span class="badge text-bg-secondary">Pausado</span>
+              {% else %}
+                <span class="badge text-bg-light">Arquivado</span>
+              {% endif %}
+            </td>
+            <td>{{ c.plan|default:"—" }}</td>
+            <td>{{ c.last_activity_at|default:"—" }}</td>
+            <td>
+              <a class="btn btn-sm btn-outline-secondary btn-pill" href="{% url 'crm:client_detail' c.pk %}">Ver</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="6" class="text-center text-secondary py-4">Nenhum cliente encontrado.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

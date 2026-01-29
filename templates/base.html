@@ -1,0 +1,118 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Personal Trainer{% endblock %}</title>
+
+  <!-- Bootstrap 5 (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tema Fitness Premium -->
+  <link href="{% static 'css/theme.css' %}" rel="stylesheet">
+</head>
+
+<body class="app-body">
+  <div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="app-sidebar">
+      <div class="px-3 py-4">
+        <div class="brand">
+          <div class="brand-mark">PT</div>
+
+          <div class="brand-name">
+            <div class="brand-title">Personal Trainer</div>
+            <div class="brand-sub">Web Admin</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MENU -->
+      <nav class="nav flex-column px-2">
+
+        <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"
+           href="{% url 'dashboard' %}">
+          <span>Dashboard</span>
+        </a>
+
+        <a class="nav-link {% if request.path|slice:':5' == '/crm/' %}active{% endif %}"
+           href="{% url 'crm:client_list' %}">
+          <span>Clientes</span>
+          <span class="badge badge-metric">{{ nav_clients_count }}</span>
+        </a>
+
+        <a class="nav-link {% if request.path|slice:':9' == '/treinos/' %}active{% endif %}"
+           href="{% url 'workouts:workout_list' %}">
+          <span>Treinos</span>
+          <span class="badge badge-metric">{{ nav_workouts_today }}</span>
+        </a>
+
+        <a class="nav-link {% if request.path|slice:':8' == '/dietas/' %}active{% endif %}"
+           href="{% url 'diets:diet_list' %}">
+          <span>Dietas</span>
+          <span class="badge badge-metric">{{ nav_diets_active }}</span>
+        </a>
+
+        <a class="nav-link {% if request.path|slice:':12' == '/biblioteca/' %}active{% endif %}"
+           href="{% url 'library:exercises' %}">
+          <span>Biblioteca</span>
+        </a>
+
+        <a class="nav-link {% if request.path|slice:':10' == '/agenda/' %}active{% endif %}"
+           href="{% url 'agenda:calendar' %}">
+          <span>Agenda</span>
+        </a>
+
+        <a class="nav-link {% if request.path|slice:':10' == '/anamnese/' %}active{% endif %}"
+           href="{% url 'anamnesis:builder' %}">
+          <span>Configurações</span>
+        </a>
+
+        <!-- USER INFO -->
+        <div class="mt-3 px-2 small text-secondary">
+          {% if request.user.is_authenticated %}
+            Olá, <strong>{{ request.user.get_short_name|default:request.user.username }}</strong><br>
+            <a class="link-secondary" href="{% url 'logout' %}">Sair</a>
+          {% else %}
+            <a class="link-secondary" href="{% url 'login' %}">Entrar</a>
+          {% endif %}
+        </div>
+
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="app-main">
+
+      <!-- TOPBAR -->
+      <header class="app-topbar">
+        <div class="container-fluid d-flex align-items-center justify-content-end">
+
+          <!-- Botões fixos na direita -->
+          <div class="topbar-switch ms-auto">
+            <button class="btn btn-brand btn-sm me-2" type="button" disabled>
+              Web Admin
+            </button>
+
+            <button class="btn btn-outline-secondary btn-sm" type="button" disabled>
+              App Mobile
+            </button>
+          </div>
+
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="app-content container-fluid py-4">
+        {% block content %}{% endblock %}
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

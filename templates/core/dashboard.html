@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Dashboard • Personal Trainer{% endblock %}
+
+{% block content %}
+<div class="row g-3 mb-3">
+  <div class="col-12 col-md-3">
+    <div class="card metric-card">
+      <div class="card-body">
+        <div class="metric-label">Clientes Ativos</div>
+        <div class="metric-value">{{ nav_clients_count }}</div>
+        <div class="metric-bar"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-3">
+    <div class="card metric-card">
+      <div class="card-body">
+        <div class="metric-label">Treinos (ativos)</div>
+        <div class="metric-value">{{ nav_workouts_today }}</div>
+        <div class="metric-bar"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-3">
+    <div class="card metric-card">
+      <div class="card-body">
+        <div class="metric-label">Dietas Ativas</div>
+        <div class="metric-value">{{ nav_diets_active }}</div>
+        <div class="metric-bar"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-3">
+    <div class="card metric-card metric-card-danger">
+      <div class="card-body">
+        <div class="metric-label">Alertas</div>
+        <div class="metric-value">{{ nav_alerts_count }}</div>
+        <div class="metric-bar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <h2 class="h5 mb-3">Gráfico de Evolução dos Alunos</h2>
+
+    <!-- Protótipo: gráfico simples em SVG (pode ser trocado por Chart.js depois). -->
+    <div class="chart-wrap">
+      <svg viewBox="0 0 800 240" class="w-100">
+        <path d="M40,190 L140,180 L240,165 L340,145 L440,120 L540,110 L640,95 L760,75"
+              fill="none" stroke="var(--brand)" stroke-width="4" stroke-linecap="round"/>
+        {% for x in "12345678" %}
+          <circle cx="{{ forloop.counter0|add:1|add:0 }}" cy="0" r="0"></circle>
+        {% endfor %}
+        <g class="chart-grid">
+          <line x1="40" y1="200" x2="760" y2="200" />
+          <line x1="40" y1="150" x2="760" y2="150" />
+          <line x1="40" y1="100" x2="760" y2="100" />
+          <line x1="40" y1="50" x2="760" y2="50" />
+        </g>
+        <g class="chart-axis">
+          <text x="40" y="225">Jan</text>
+          <text x="140" y="225">Fev</text>
+          <text x="240" y="225">Mar</text>
+          <text x="340" y="225">Abr</text>
+          <text x="440" y="225">Mai</text>
+          <text x="540" y="225">Jun</text>
+          <text x="640" y="225">Jul</text>
+          <text x="760" y="225" text-anchor="end">Ago</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h2 class="h5 mb-3">Últimas atividades</h2>
+    <ul class="activity">
+      <li><span class="dot"></span> <strong>João Silva</strong> — treino atualizado</li>
+      <li><span class="dot"></span> <strong>Maria Souza</strong> — dieta revisada</li>
+      <li><span class="dot"></span> <strong>Pedro Lima</strong> — novo exame recebido</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

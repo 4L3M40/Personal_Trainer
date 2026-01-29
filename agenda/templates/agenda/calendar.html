@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Agenda • Personal Trainer{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h1 class="h3 mb-0">Agenda</h1>
+  <button class="btn btn-brand btn-pill" type="button" disabled>+ Novo Evento</button>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <div class="fw-bold">Semana</div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary btn-pill btn-sm" type="button" disabled>Dia</button>
+        <button class="btn btn-brand btn-pill btn-sm" type="button" disabled>Semana</button>
+        <button class="btn btn-outline-secondary btn-pill btn-sm" type="button" disabled>Mês</button>
+      </div>
+    </div>
+
+    <div class="border rounded-4 p-3 bg-white">
+      <div class="text-secondary small mb-2">Protótipo do calendário (grade será implementada depois)</div>
+
+      <ul class="activity">
+        {% for e in events %}
+          <li><span class="dot"></span>
+            <strong>{{ e.title }}</strong>
+            {% if e.client %}— {{ e.client.full_name }}{% endif %}
+            <span class="text-secondary">({{ e.starts_at|date:"d/m/Y H:i" }})</span>
+          </li>
+        {% empty %}
+          <li><span class="dot"></span> <strong>Consulta João</strong> <span class="text-secondary">(10:00)</span></li>
+          <li><span class="dot"></span> <strong>Atualizar treino Maria</strong> <span class="text-secondary">(15:00)</span></li>
+          <li><span class="dot"></span> <strong>Avaliação Pedro</strong> <span class="text-secondary">(17:00)</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

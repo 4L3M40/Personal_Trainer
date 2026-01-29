@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Biblioteca • Exercícios{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h1 class="h3 mb-0">Biblioteca</h1>
+</div>
+
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item"><a class="nav-link active" href="{% url 'library:exercises' %}">Exercícios</a></li>
+  <li class="nav-item"><a class="nav-link" href="{% url 'library:foods' %}">Alimentos</a></li>
+</ul>
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div class="text-secondary"> {{ items|length }} exercícios cadastrados</div>
+  <a class="btn btn-brand btn-pill" href="{% url 'library:exercise_create' %}">+ Novo Exercício</a>
+</div>
+
+<div class="row g-3">
+  {% for ex in items %}
+  <div class="col-12 col-md-6 col-xl-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="text-secondary small mb-1">{{ ex.muscle_group|default:"—" }}</div>
+        <div class="fw-bold">{{ ex.name }}</div>
+      </div>
+      <div class="card-footer bg-white border-0 d-flex gap-2 p-3 pt-0">
+        <a class="btn btn-outline-secondary btn-sm btn-pill w-100" href="{% url 'library:exercise_update' ex.pk %}">Editar</a>
+        <button class="btn btn-outline-danger btn-sm btn-pill" type="button" disabled>🗑</button>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12 text-center text-secondary py-5">Sem exercícios ainda.</div>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}{{ plan.name }} • Dieta{% endblock %}
+{% block content %}
+
+{% if messages %}
+  {% for m in messages %}
+    <div class="alert alert-success">{{ m }}</div>
+  {% endfor %}
+{% endif %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div class="d-flex align-items-center gap-2">
+    <h1 class="h3 mb-0">{{ plan.name }}</h1>
+    <span class="badge text-bg-light">Total: {{ plan.total_kcal }} kcal</span>
+  </div>
+  <div class="d-flex gap-2">
+    <a class="btn btn-outline-secondary btn-pill" href="{% url 'diets:diet_update' plan.pk %}">Editar</a>
+    <button class="btn btn-brand btn-pill" type="button" disabled>Aplicar Cliente</button>
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-12 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="fw-bold mb-2">Refeições</div>
+
+        <div class="list-group mb-3">
+          {% for m in meals %}
+            <a class="list-group-item list-group-item-action {% if selected_meal and m.pk == selected_meal.pk %}active{% endif %}"
+               href="{% url 'diets:diet_detail' plan.pk %}?meal={{ m.pk }}">
+              <div class="fw-bold">{{ m.name }}</div>
+              <div class="small opacity-75">
+                {% for it in m.items.all %}
+                  • {{ it.food.name }}{% if not forloop.last %}<br>{% endif %}
+                {% empty %}
+                  <span class="text-secondary">Sem itens</span>
+                {% endfor %}
+              </div>
+            </a>
+          {% empty %}
+            <div class="text-secondary">Nenhuma refeição cadastrada.</div>
+          {% endfor %}
+        </div>
+
+        <form method="post" action="{% url 'diets:add_meal' plan.pk %}" class="border rounded-4 p-3">
+          {% csrf_token %}
+          <div class="fw-bold mb-2">+ Adicionar Refeição</div>
+          <div class="row g-2">
+            <div class="col-8">
+              {{ meal_form.name }}
+            </div>
+            <div class="col-4">
+              {{ meal_form.order }}
+            </div>
+            <div class="col-12">
+              <button class="btn btn-outline-secondary btn-pill" type="submit">Adicionar</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="fw-bold mb-2">Editor de Alimento</div>
+
+        {% if selected_meal %}
+          <div class="text-secondary mb-2">Refeição: <strong>{{ selected_meal.name }}</strong></div>
+
+          <form method="post" action="{% url 'diets:add_food' plan.pk %}">
+            {% csrf_token %}
+            <input type="hidden" name="meal_id" value="{{ selected_meal.pk }}">
+
+            <div class="mb-2">
+              <label class="form-label">Buscar Alimento</label>
+              {{ item_form.food }}
+            </div>
+
+            <div class="mb-2">
+              <label class="form-label">Quantidade</label>
+              {{ item_form.quantity_label }}
+            </div>
+
+            <div class="row g-2">
+              <div class="col-12 col-md-6">
+                <label class="form-label">Calorias</label>
+                {{ item_form.kcal }}
+              </div>
+              <div class="col-4">
+                <label class="form-label">Proteínas (g)</label>
+                {{ item_form.protein_g }}
+              </div>
+              <div class="col-4">
+                <label class="form-label">Carbo (g)</label>
+                {{ item_form.carbs_g }}
+              </div>
+              <div class="col-4">
+                <label class="form-label">Gorduras (g)</label>
+                {{ item_form.fats_g }}
+              </div>
+              <div class="col-12">
+                <label class="form-label">Observações</label>
+                {{ item_form.notes }}
+              </div>
+              <div class="col-12">
+                <button class="btn btn-brand btn-pill w-100" type="submit">Aplicar Alteração</button>
+              </div>
+            </div>
+          </form>
+        {% else %}
+          <div class="text-secondary">Crie uma refeição para começar.</div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll("input, select, textarea").forEach(el => el.classList.add("form-control","form-control-lg"));
+  document.querySelectorAll(".list-group-item.active").forEach(el => { el.style.background = "var(--brand)"; el.style.borderColor = "var(--brand)"; });
+</script>
+
+{% endblock %}

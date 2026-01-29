@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Biblioteca • Alimentos{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h1 class="h3 mb-0">Biblioteca</h1>
+</div>
+
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item"><a class="nav-link" href="{% url 'library:exercises' %}">Exercícios</a></li>
+  <li class="nav-item"><a class="nav-link active" href="{% url 'library:foods' %}">Alimentos</a></li>
+</ul>
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div class="text-secondary">{{ items|length }} alimentos cadastrados</div>
+  <a class="btn btn-brand btn-pill" href="{% url 'library:food_create' %}">+ Novo Alimento</a>
+</div>
+
+<div class="card">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Alimento</th>
+            <th>Kcal</th>
+            <th>Proteínas</th>
+            <th>Carbo</th>
+            <th>Gorduras</th>
+            <th style="width:110px;">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for f in items %}
+          <tr>
+            <td class="fw-bold">{{ f.name }} ({{ f.portion_label }})</td>
+            <td>{{ f.kcal }}</td>
+            <td>{{ f.protein_g }}g</td>
+            <td>{{ f.carbs_g }}g</td>
+            <td>{{ f.fats_g }}g</td>
+            <td class="d-flex gap-2">
+              <a class="btn btn-sm btn-outline-secondary btn-pill" href="{% url 'library:food_update' f.pk %}">✎</a>
+              <button class="btn btn-sm btn-outline-danger btn-pill" type="button" disabled>🗑</button>
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="6" class="text-center text-secondary py-4">Sem alimentos ainda.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

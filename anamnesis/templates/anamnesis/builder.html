@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Configurações • Anamnese{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h1 class="h3 mb-0">Configurações</h1>
+</div>
+
+<div class="row g-3">
+  <div class="col-12 col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="fw-bold mb-2">Identidade Visual</div>
+        <div class="list-group">
+          <a class="list-group-item list-group-item-action active" href="#">Builder de Anamnese</a>
+          <a class="list-group-item list-group-item-action disabled" href="#">Conta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h2 class="h4 mb-0">Builder de Anamnese</h2>
+      <button class="btn btn-brand btn-pill" data-bs-toggle="collapse" data-bs-target="#newQ" type="button">+ Nova Pergunta</button>
+    </div>
+
+    <div id="newQ" class="collapse mb-3">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" action="{% url 'anamnesis:add_question' %}" class="row g-2">
+            {% csrf_token %}
+            <div class="col-12">
+              <label class="form-label">Pergunta</label>
+              {{ form.title }}
+            </div>
+            <div class="col-12 col-md-4">
+              <label class="form-label">Tipo</label>
+              {{ form.field_type }}
+            </div>
+            <div class="col-12 col-md-8">
+              <label class="form-label">Opções (select/radio)</label>
+              {{ form.options }}
+            </div>
+            <div class="col-12">
+              <button class="btn btn-brand btn-pill" type="submit">Adicionar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    {% for q in questions %}
+      <div class="card mb-2">
+        <div class="card-body d-flex align-items-center justify-content-between">
+          <div>
+            <div class="fw-bold">{{ q.title }}</div>
+            <div class="text-secondary small">Tipo: {{ q.field_type }}</div>
+          </div>
+          <button class="btn btn-outline-danger btn-pill btn-sm" type="button" disabled>🗑</button>
+        </div>
+      </div>
+    {% empty %}
+      <div class="card">
+        <div class="card-body text-secondary">Sem perguntas ainda.</div>
+      </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll("input, select").forEach(el => el.classList.add("form-control","form-control-lg"));
+  document.querySelectorAll(".list-group-item.active").forEach(el => { el.style.background = "var(--brand)"; el.style.borderColor = "var(--brand)"; });
+</script>
+
+{% endblock %}
