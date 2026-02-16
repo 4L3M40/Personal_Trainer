@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Treino • Cadastro{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <h1 class="h4 mb-3">{% if form.instance.pk %}Editar Treino{% else %}Novo Treino{% endif %}</h1>
+    <form method="post" class="row g-3">
+      {% csrf_token %}
+      <div class="col-12 col-lg-8">
+        <label class="form-label">Nome</label>
+        {{ form.name }}
+      </div>
+      <div class="col-12 col-lg-8">
+        <label class="form-label">Tags (separadas por vírgula)</label>
+        {{ form.tags }}
+      </div>
+      <div class="col-12 col-lg-4">
+        <label class="form-label">Ativo?</label>
+        {{ form.is_active }}
+      </div>
+      <div class="col-12 d-flex gap-2">
+        <button class="btn btn-brand btn-pill" type="submit">Salvar</button>
+        <a class="btn btn-outline-secondary btn-pill" href="{% url 'workouts:workout_list' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  document.querySelectorAll("input, select").forEach(el => el.classList.add("form-control","form-control-lg"));
+</script>
+{% endblock %}

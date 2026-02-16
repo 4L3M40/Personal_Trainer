@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ client.full_name }} • Logbook{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div>
+    <h1 class="h3 mb-0">{{ client.full_name }}</h1>
+    <div class="text-secondary">Logbook</div>
+  </div>
+  <a class="btn btn-outline-secondary btn-pill" href="{% url 'crm:client_detail' client.pk %}">Voltar</a>
+</div>
+
+<div class="card mb-3">
+  <div class="card-body">
+    {% include "crm/_client_tabs.html" with client=client active_tab=active_tab %}
+
+    <div class="border rounded-4 p-3 mb-3">
+      <div class="fw-bold mb-2">+ Nova entrada (mensagem/feedback)</div>
+      <form method="post" class="row g-2">
+        {% csrf_token %}
+        <div class="col-12">
+          <textarea name="text" class="form-control form-control-lg" rows="3" placeholder="Escreva uma observação para ficar registrada..."></textarea>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-brand btn-pill" type="submit">Adicionar</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="fw-bold mb-2">Timeline</div>
+    <ul class="activity">
+      {% for e in events %}
+        <li>
+          <span class="dot"></span>
+          {% if e.type == 'workout' %}
+            <strong>Treino aplicado</strong> — {{ e.obj.plan.name }}
+          {% elif e.type == 'diet' %}
+            <strong>Dieta aplicada</strong> — {{ e.obj.plan.name }}
+          {% elif e.type == 'progress' %}
+            <strong>Progresso</strong> — {{ e.obj.date|date:"d/m/Y" }}{% if e.obj.weight_kg %} • {{ e.obj.weight_kg }}kg{% endif %}
+          {% elif e.type == 'exam' %}
+            <strong>Exame enviado</strong> — <a href="{{ e.obj.file.url }}" target="_blank">{{ e.obj.title|default:e.obj.file.name }}</a>
+          {% elif e.type == 'photo' %}
+            <strong>Foto enviada</strong> — <a href="{{ e.obj.file.url }}" target="_blank">{{ e.obj.title|default:e.obj.file.name }}</a>
+          {% elif e.type == 'note' %}
+            <strong>Nota interna</strong> — {{ e.obj.text|truncatechars:80 }}
+          {% elif e.type == 'feedback' %}
+            <strong>Mensagem</strong> — {{ e.obj.text|truncatechars:120 }}
+          {% elif e.type == 'appointment' %}
+            <strong>Agenda</strong> — {{ e.obj.title }} <span class="text-secondary">({{ e.obj.starts_at|date:"d/m/Y H:i" }})</span>
+          {% endif %}
+          <div class="text-secondary small">{{ e.ts|date:"d/m/Y H:i" }}</div>
+        </li>
+      {% empty %}
+        <li><span class="dot"></span> <span class="text-secondary">Sem registros ainda.</span></li>
+      {% endfor %}
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}

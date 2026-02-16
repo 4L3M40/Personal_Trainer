@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Cliente • Cadastro{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <h1 class="h4 mb-3">{% if form.instance.pk %}Editar Cliente{% else %}Novo Cliente{% endif %}</h1>
+    <form method="post" class="row g-3">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div class="col-12 col-lg-6">
+        <label class="form-label">Nome</label>
+        {{ form.full_name }}
+      </div>
+      <div class="col-4 col-lg-2">
+        <label class="form-label">Idade</label>
+        {{ form.age }}
+      </div>
+      <div class="col-4 col-lg-2">
+        <label class="form-label">Peso (kg)</label>
+        {{ form.weight_kg }}
+      </div>
+      <div class="col-4 col-lg-2">
+        <label class="form-label">Altura (m)</label>
+        {{ form.height_m }}
+      </div>
+      <div class="col-12 col-lg-4">
+        <label class="form-label">Status</label>
+        {{ form.status }}
+      </div>
+      <div class="col-12 col-lg-4">
+        <label class="form-label">Plano</label>
+        {{ form.plan }}
+      </div>
+      <div class="col-12 col-lg-4">
+        <label class="form-label">Última atividade</label>
+        {{ form.last_activity_at }}
+      </div>
+
+      <div class="col-12 d-flex gap-2">
+        <button class="btn btn-brand btn-pill" type="submit">Salvar</button>
+        <a class="btn btn-outline-secondary btn-pill" href="{% url 'crm:client_list' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll("input, select").forEach(el => el.classList.add("form-control","form-control-lg"));
+</script>
+{% endblock %}

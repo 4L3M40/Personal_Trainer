@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{% if object %}Editar Evento{% else %}Novo Evento{% endif %} • Agenda{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h1 class="h3 mb-0">{% if object %}Editar Evento{% else %}Novo Evento{% endif %}</h1>
+  <a class="btn btn-outline-secondary btn-pill" href="{% url 'agenda:calendar' %}">Voltar</a>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <form method="post" class="row g-3">
+      {% csrf_token %}
+
+      <div class="col-12 col-lg-6">
+        <label class="form-label">Cliente (opcional)</label>
+        {{ form.client }}
+      </div>
+      <div class="col-12 col-lg-6">
+        <label class="form-label">Título</label>
+        {{ form.title }}
+      </div>
+      <div class="col-12 col-lg-6">
+        <label class="form-label">Início</label>
+        {{ form.starts_at }}
+      </div>
+      <div class="col-12 col-lg-6">
+        <label class="form-label">Fim</label>
+        {{ form.ends_at }}
+      </div>
+
+      <div class="col-12 d-flex gap-2">
+        <button class="btn btn-brand btn-pill" type="submit">Salvar</button>
+        {% if object %}
+          <a class="btn btn-outline-secondary btn-pill" href="{% url 'agenda:calendar' %}">Cancelar</a>
+        {% endif %}
+      </div>
+    </form>
+
+    {% if object %}
+      <hr>
+      <form method="post" action="{% url 'agenda:appointment_delete' object.pk %}" onsubmit="return confirm('Remover este evento?');">
+        {% csrf_token %}
+        <button class="btn btn-outline-danger btn-pill" type="submit">Excluir evento</button>
+      </form>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll("input, select, textarea").forEach(el => el.classList.add("form-control","form-control-lg"));
+</script>
+
+{% endblock %}

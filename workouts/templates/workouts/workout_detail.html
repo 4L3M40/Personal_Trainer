@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load extras %}
+{% block title %}{{ plan.name }} • Treino{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div>
+    <h1 class="h3 mb-1">{{ plan.name }}</h1>
+    <div class="d-flex gap-2 flex-wrap">
+      {% for t in plan.tags|split:',' %}
+        {% with tag=t|trim %}
+          {% if tag %}
+            <span class="badge text-bg-light">{{ tag }}</span>
+          {% endif %}
+        {% endwith %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="d-flex gap-2">
+    <a class="btn btn-outline-secondary btn-pill" href="{% url 'workouts:workout_update' plan.pk %}">Editar</a>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="fw-bold mb-2">Aplicar para cliente</div>
+    <form method="post" action="{% url 'workouts:apply_to_client' plan.pk %}" class="row g-2 align-items-end">
+      {% csrf_token %}
+      <div class="col-12 col-md-6">
+        <label class="form-label">Cliente</label>
+        {{ apply_form.client }}
+      </div>
+      <div class="col-12 col-md-3">
+        <button class="btn btn-brand btn-pill w-100" type="submit">Aplicar</button>
+      </div>
+      <div class="col-12 col-md-3 text-secondary small">
+        Cria um vínculo em CRM → Treinos.
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row g-3">
+  <!-- COLUNA DIAS -->
+  <div class="col-12 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="fw-bold mb-2">Dias de Treino</div>
+
+        <div class="list-group mb-3">
+          {% for d in days %}
+            <div class="list-group-item d-flex align-items-start justify-content-between gap-2 {% if selected_day and d.pk == selected_day.pk %}active{% endif %}">
+              <a class="text-decoration-none flex-grow-1 {% if selected_day and d.pk == selected_day.pk %}text-white{% else %}text-dark{% endif %}"
+                 href="{% url 'workouts:workout_detail' plan.pk %}?day={{ d.pk }}">
+                <div class="fw-bold">{{ d.label }}</div>
+                <div class="small opacity-75">
+                  {% for it in d.items.all %}
+                    • {{ it.exercise.name }}{% if not forloop.last %}<br>{% endif %}
+                  {% empty %}
+                    <span class="text-secondary">Sem exercícios</span>
+                  {% endfor %}
+                </div>
+              </a>
+              <form method="post" action="{% url 'workouts:day_delete' plan.pk d.pk %}" onsubmit="return confirm('Remover este dia?');">
+                {% csrf_token %}
+                <button class="btn btn-outline-danger btn-sm btn-pill" type="submit">🗑</button>
+              </form>
+            </div>
+          {% empty %}
+            <div class="text-secondary">Nenhum dia cadastrado.</div>
+          {% endfor %}
+        </div>
+
+        <form method="post" action="{% url 'workouts:add_day' plan.pk %}" class="border rounded-4 p-3">
+          {% csrf_token %}
+          <div class="fw-bold mb-2">+ Adicionar Dia</div>
+          <div class="row g-2">
+            <div class="col-8">
+              {{ day_form.label }}
+            </div>
+            <div class="col-4">
+              {{ day_form.order }}
+            </div>
+            <div class="col-12">
+              <button class="btn btn-outline-secondary btn-pill" type="submit">Adicionar</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- COLUNA EXERCÍCIOS -->
+  <div class="col-12 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="fw-bold mb-2">Exercícios do dia</div>
+
+        {% if selected_day %}
+          <div class="text-secondary mb-2">
+            Dia selecionado: <strong>{{ selected_day.label }}</strong>
+          </div>
+
+          <div class="list-group mb-3">
+            {% for it in selected_day.items.all %}
+              <div class="list-group-item d-flex align-items-center justify-content-between gap-2">
+                <a class="text-decoration-none flex-grow-1"
+                   href="{% url 'workouts:workout_detail' plan.pk %}?day={{ selected_day.pk }}&item={{ it.pk }}">
+                  <div class="fw-bold">{{ it.exercise.name }}</div>
+                  <div class="text-secondary small">
+                    {{ it.sets }}x{{ it.reps }} • descanso {{ it.rest_seconds }}s
+                    {% if it.suggested_load %} • carga: {{ it.suggested_load }}{% endif %}
+                  </div>
+                </a>
+                <form method="post" action="{% url 'workouts:exercise_delete' plan.pk it.pk %}"
+                      onsubmit="return confirm('Remover este exercício?');">
+                  {% csrf_token %}
+                  <button class="btn btn-outline-danger btn-sm btn-pill" type="submit">🗑</button>
+                </form>
+              </div>
+            {% empty %}
+              <div class="text-secondary">Sem exercícios ainda.</div>
+            {% endfor %}
+          </div>
+
+          <div class="fw-bold mb-2">
+            {% if selected_item %}Editar exercício{% else %}+ Adicionar exercício{% endif %}
+          </div>
+
+          <form method="post"
+                action="{% if selected_item %}{% url 'workouts:exercise_update' plan.pk selected_item.pk %}
+                        {% else %}{% url 'workouts:add_exercise' plan.pk %}{% endif %}">
+            {% csrf_token %}
+
+            {% if not selected_item %}
+              <input type="hidden" name="day_id" value="{{ selected_day.pk }}">
+            {% endif %}
+
+            <div class="mb-2">
+              <label class="form-label">Buscar Exercício</label>
+              {{ item_form.exercise }}
+            </div>
+
+            <div class="row g-2">
+              <div class="col-6">
+                <label class="form-label">Séries</label>
+                {{ item_form.sets }}
+              </div>
+              <div class="col-6">
+                <label class="form-label">Repetições</label>
+                {{ item_form.reps }}
+              </div>
+              <div class="col-12">
+                <label class="form-label">Carga sugerida</label>
+                {{ item_form.suggested_load }}
+              </div>
+              <div class="col-12">
+                <label class="form-label">Tempo de descanso (s)</label>
+                {{ item_form.rest_seconds }}
+              </div>
+              <div class="col-12">
+                <label class="form-label">Observações</label>
+                {{ item_form.notes }}
+              </div>
+
+              <div class="col-12 d-flex gap-2">
+                <button class="btn btn-brand btn-pill w-100" type="submit">
+                  {% if selected_item %}Salvar{% else %}Adicionar{% endif %}
+                </button>
+
+                {% if selected_item %}
+                  <a class="btn btn-outline-secondary btn-pill"
+                     href="{% url 'workouts:workout_detail' plan.pk %}?day={{ selected_day.pk }}">
+                    Limpar
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </form>
+
+        {% else %}
+          <div class="text-secondary">Crie um dia para começar.</div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll("input, select, textarea").forEach(el =>
+    el.classList.add("form-control","form-control-lg")
+  );
+  document.querySelectorAll(".list-group-item.active").forEach(el => {
+    el.style.background = "var(--brand)";
+    el.style.borderColor = "var(--brand)";
+  });
+</script>
+
+{% endblock %}

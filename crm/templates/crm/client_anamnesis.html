@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load extras %}
+{% block title %}{{ client.full_name }} • Anamnese{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div>
+    <h1 class="h3 mb-0">{{ client.full_name }}</h1>
+    <div class="text-secondary">Anamnese</div>
+  </div>
+  <a class="btn btn-outline-secondary btn-pill" href="{% url 'crm:client_detail' client.pk %}">Voltar</a>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    {% include "crm/_client_tabs.html" with client=client active_tab=active_tab %}
+
+    <form method="post" class="row g-3">
+      {% csrf_token %}
+
+      {% for q in questions %}
+        <div class="col-12">
+          <label class="form-label fw-bold">{{ q.title }}</label>
+
+          {% if q.field_type == 'text' %}
+            <input class="form-control form-control-lg" name="q_{{ q.pk }}" value="{{ answers|get_item:q.pk|default:'' }}">
+
+          {% elif q.field_type == 'select' %}
+            <select class="form-select form-select-lg" name="q_{{ q.pk }}">
+              <option value="">—</option>
+              {% for opt in q.options|split:';' %}
+                {% with o=opt|trim %}
+                  {% if o %}
+                    <option value="{{ o }}" {% if answers|get_item:q.pk == o %}selected{% endif %}>{{ o }}</option>
+                  {% endif %}
+                {% endwith %}
+              {% endfor %}
+            </select>
+
+          {% elif q.field_type == 'radio' %}
+            <div class="d-flex flex-wrap gap-2">
+              {% for opt in q.options|split:';' %}
+                {% with o=opt|trim %}
+                  {% if o %}
+                    <label class="btn btn-outline-secondary btn-pill">
+                      <input class="form-check-input me-2" type="radio" name="q_{{ q.pk }}" value="{{ o }}" {% if answers|get_item:q.pk == o %}checked{% endif %}>
+                      {{ o }}
+                    </label>
+                  {% endif %}
+                {% endwith %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+        </div>
+      {% empty %}
+        <div class="text-secondary">Nenhuma pergunta cadastrada. Configure em <a href="{% url 'anamnesis:builder' %}">Configurações</a>.</div>
+      {% endfor %}
+
+      <div class="col-12">
+        <button class="btn btn-brand btn-pill" type="submit">Salvar</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

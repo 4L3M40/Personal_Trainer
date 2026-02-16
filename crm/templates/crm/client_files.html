@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}{{ client.full_name }} • {% if kind == 'exam' %}Exames{% else %}Fotos{% endif %}{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div>
+    <h1 class="h3 mb-0">{{ client.full_name }}</h1>
+    <div class="text-secondary">{% if kind == 'exam' %}Exames{% else %}Fotos{% endif %}</div>
+  </div>
+  <a class="btn btn-outline-secondary btn-pill" href="{% url 'crm:client_detail' client.pk %}">Voltar</a>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    {% include "crm/_client_tabs.html" with client=client active_tab=active_tab %}
+
+    <div class="row g-3">
+      <div class="col-12 col-lg-5">
+        <div class="border rounded-4 p-3">
+          <div class="fw-bold mb-2">+ Enviar arquivo</div>
+          <form method="post" enctype="multipart/form-data" class="row g-2">
+            {% csrf_token %}
+            <div class="col-12">
+              <label class="form-label">Título (opcional)</label>
+              {{ form.title }}
+            </div>
+            <div class="col-12">
+              <label class="form-label">Arquivo</label>
+              {{ form.file }}
+            </div>
+            <div class="col-12">
+              <button class="btn btn-brand btn-pill" type="submit">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-7">
+        <div class="fw-bold mb-2">Histórico</div>
+
+        <div class="list-group">
+          {% for it in items %}
+            <div class="list-group-item d-flex align-items-center justify-content-between gap-3">
+              <div>
+                <div class="fw-bold">{{ it.title|default:it.file.name }}</div>
+                <div class="text-secondary small">{{ it.uploaded_at|date:"d/m/Y H:i" }}</div>
+              </div>
+              <div class="d-flex gap-2">
+                <a class="btn btn-outline-secondary btn-sm btn-pill" href="{{ it.file.url }}" target="_blank">Abrir</a>
+                <form method="post" action="{% url 'crm:client_file_delete' client.pk it.pk %}" onsubmit="return confirm('Remover este arquivo?');">
+                  {% csrf_token %}
+                  <button class="btn btn-outline-danger btn-sm btn-pill" type="submit">🗑</button>
+                </form>
+              </div>
+            </div>
+          {% empty %}
+            <div class="text-secondary">Sem arquivos ainda.</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll("input, select, textarea").forEach(el => el.classList.add("form-control","form-control-lg"));
+</script>
+
+{% endblock %}

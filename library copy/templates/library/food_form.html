@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Alimento • Biblioteca{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <h1 class="h4 mb-3">{% if form.instance.pk %}Editar Alimento{% else %}Novo Alimento{% endif %}</h1>
+    <form method="post" class="row g-3">
+      {% csrf_token %}
+      <div class="col-12 col-lg-6">
+        <label class="form-label">Nome</label>
+        {{ form.name }}
+      </div>
+      <div class="col-12 col-lg-6">
+        <label class="form-label">Porção</label>
+        {{ form.portion_label }}
+      </div>
+      <div class="col-6 col-lg-3">
+        <label class="form-label">Kcal</label>
+        {{ form.kcal }}
+      </div>
+      <div class="col-6 col-lg-3">
+        <label class="form-label">Proteínas (g)</label>
+        {{ form.protein_g }}
+      </div>
+      <div class="col-6 col-lg-3">
+        <label class="form-label">Carbo (g)</label>
+        {{ form.carbs_g }}
+      </div>
+      <div class="col-6 col-lg-3">
+        <label class="form-label">Gorduras (g)</label>
+        {{ form.fats_g }}
+      </div>
+      <div class="col-12 d-flex gap-2">
+        <button class="btn btn-brand btn-pill" type="submit">Salvar</button>
+        <a class="btn btn-outline-secondary btn-pill" href="{% url 'library:foods' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  document.querySelectorAll("input").forEach(el => el.classList.add("form-control","form-control-lg"));
+</script>
+{% endblock %}

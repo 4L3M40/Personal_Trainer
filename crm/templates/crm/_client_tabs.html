@@ -1,0 +1,12 @@
+{# Fragmento simples de abas do cliente. Use com include e passe active_tab. #}
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item"><a class="nav-link {% if active_tab == 'overview' %}active{% endif %}" href="{% url 'crm:client_detail' client.pk %}">Visão Geral</a></li>
+  <li class="nav-item"><a class="nav-link {% if active_tab == 'treinos' %}active{% endif %}" href="{% url 'crm:client_workouts' client.pk %}">Treinos</a></li>
+  <li class="nav-item"><a class="nav-link {% if active_tab == 'dietas' %}active{% endif %}" href="{% url 'crm:client_diets' client.pk %}">Dietas</a></li>
+  <li class="nav-item"><a class="nav-link {% if active_tab == 'progresso' %}active{% endif %}" href="{% url 'crm:client_progress' client.pk %}">Progresso</a></li>
+  <li class="nav-item"><a class="nav-link {% if active_tab == 'anamnese' %}active{% endif %}" href="{% url 'crm:client_anamnesis' client.pk %}">Anamnese</a></li>
+  <li class="nav-item"><a class="nav-link {% if active_tab == 'exames' %}active{% endif %}" href="{% url 'crm:client_exams' client.pk %}">Exames</a></li>
+  <li class="nav-item"><a class="nav-link {% if active_tab == 'fotos' %}active{% endif %}" href="{% url 'crm:client_photos' client.pk %}">Fotos</a></li>
+  <li class="nav-item"><a class="nav-link {% if active_tab == 'logbook' %}active{% endif %}" href="{% url 'crm:client_logbook' client.pk %}">Logbook</a></li>
+  <li class="nav-item"><a class="nav-link {% if active_tab == 'notas' %}active{% endif %}" href="{% url 'crm:client_notes' client.pk %}">Notas</a></li>
+</ul>
