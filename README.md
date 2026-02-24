@@ -7,7 +7,8 @@ Este repositório contém a documentação inicial do **Couth App**, uma platafo
 
 ## 1. Visão geral do sistema
 
-**Objetivo:** plataforma para o **Personal Trainer** gerenciar alunos e prescrever treinos/dietas, enquanto o **Aluno** executa, registra e devolve progresso/feedback.
+**Objetivo:** plataforma para o **Personal Trainer** gerenciar alunos e prescrever treinos/dietas, enquanto o **Aluno** executa, registra e devolve progresso/feedback
+
 
 ### Atores principais
 - **Personal Trainer (Admin Web):** cria/gerencia conteúdo e alunos.
