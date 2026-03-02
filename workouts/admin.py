@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import WorkoutPlan, WorkoutDay, WorkoutExercise, ClientWorkout
+from .models import WorkoutAssignment
 
 class WorkoutExerciseInline(admin.TabularInline):
     model = WorkoutExercise
@@ -24,3 +25,6 @@ class WorkoutDayAdmin(admin.ModelAdmin):
 class ClientWorkoutAdmin(admin.ModelAdmin):
     list_display = ("client","plan","is_current","applied_at")
     list_filter = ("is_current",)
+
+
+admin.site.register(WorkoutAssignment)
