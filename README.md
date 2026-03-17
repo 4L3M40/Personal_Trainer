@@ -310,7 +310,7 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 - Custo/tempo maior agora.
 
 - Começar com **Rota A** (admin server‑rendered + Tailwind).  
-O app aluno pode ser web responsivo nesta fase; migrar para mobile nativo na fase 2 se necessário.
+O app aluno pode ser web responsivo nesta fase; migrar para mobile nativo na fase 2 se necessário..
 
 
 
