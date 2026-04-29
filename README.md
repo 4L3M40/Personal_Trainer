@@ -301,7 +301,7 @@ O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré 
 ### Rota A — Django + Templates + HTMX/Alpine (rápida)
 - Admin web com Django templates + Tailwind.  
 - Interações dinâmicas com HTMX + Alpine.js.  
-- Vantagem: entrega rápida, simples, sem SPA. Boa para fase 1.
+- Vantagem: entrega rápida, simples, sem SPA. Boa para fase 1..
 
 ### Rota B — Backend Django (API REST) + Front separado
 - SPA para admin/aluno: React/Next ou Vue/Nuxt.  
