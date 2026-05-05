@@ -50,23 +50,31 @@ class StudentWorkoutTodayView(APIView):
             WorkoutAssignment.objects.filter(
                 client_id=sp.client_id,
                 is_active=True,
-                start_date__lte=today,
             )
-            .filter(models.Q(end_date__isnull=True) | models.Q(end_date__gte=today))
+            .filter(
+                models.Q(start_date__isnull=True) | models.Q(start_date__lte=today)
+            )
+            .filter(
+                models.Q(end_date__isnull=True) | models.Q(end_date__gte=today)
+            )
             .select_related("workout")
             .order_by("-start_date", "-id")
         )
 
         assignment = qs.first()
+
         if not assignment:
-            return Response({"detail": "Nenhum treino atribuído para hoje."}, status=404)
+            return Response(
+                {"detail": "Nenhum treino ativo encontrado para este aluno."},
+                status=404,
+            )
 
         workout_data = WorkoutPlanDetailSerializer(assignment.workout).data
 
         return Response({
             "assignment": {
                 "id": assignment.id,
-                "start_date": str(assignment.start_date),
+                "start_date": str(assignment.start_date) if assignment.start_date else None,
                 "end_date": str(assignment.end_date) if assignment.end_date else None,
             },
             "workout": workout_data,
@@ -78,6 +86,7 @@ class StudentStartWorkoutView(APIView):
 
     def post(self, request, assignment_id: int):
         sp = request.user.student_profile
+
         assignment = get_object_or_404(
             WorkoutAssignment,
             id=assignment_id,
@@ -86,11 +95,20 @@ class StudentStartWorkoutView(APIView):
         )
 
         today = timezone.localdate()
+
         session, created = WorkoutSession.objects.get_or_create(
             assignment=assignment,
             performed_on=today,
-            defaults={"notes": request.data.get("notes", "")},
+            defaults={
+                "notes": request.data.get("notes", ""),
+            },
         )
+
+        # Se já existia uma sessão finalizada no mesmo dia,
+        # reabre para permitir testar novamente no app.
+        if session.finished_at:
+            session.finished_at = None
+            session.save(update_fields=["finished_at"])
 
         return Response({
             "created": created,
