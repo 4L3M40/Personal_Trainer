@@ -9,6 +9,8 @@ import {
   Alert,
   ScrollView,
   RefreshControl,
+  Modal,
+  TextInput,
 } from "react-native";
 import api from "../api/client";
 import { clearTokens } from "../storage/token";
@@ -70,6 +72,12 @@ export default function WorkoutTodayScreen({ onLogout }: Props) {
   const [currentExercise, setCurrentExercise] = useState(0);
   const [loggingSet, setLoggingSet] = useState<number | null>(null);
 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
+  const [selectedSetNumber, setSelectedSetNumber] = useState<number | null>(null);
+  const [repsDone, setRepsDone] = useState("");
+  const [loadUsed, setLoadUsed] = useState("");
+
   const loadToday = useCallback(async () => {
     try {
       const res = await api.get("/api/v1/student/workouts/today/");
@@ -111,28 +119,52 @@ export default function WorkoutTodayScreen({ onLogout }: Props) {
     }
   }
 
-  async function handleLogSet(exercise: Exercise, setNumber: number) {
+  function openSetModal(exercise: Exercise, setNumber: number) {
+    setSelectedExercise(exercise);
+    setSelectedSetNumber(setNumber);
+    setRepsDone("");
+    setLoadUsed(exercise.suggested_load || "");
+    setModalVisible(true);
+  }
+
+  async function handleLogSet() {
     if (!session) {
       Alert.alert("Atenção", "Inicie o treino primeiro.");
       return;
     }
 
-    const key = exercise.id * 100 + setNumber;
+    if (!selectedExercise || !selectedSetNumber) {
+      Alert.alert("Erro", "Série não selecionada.");
+      return;
+    }
+
+    if (!repsDone) {
+      Alert.alert("Atenção", "Informe as repetições.");
+      return;
+    }
+
+    const key = selectedExercise.id * 100 + selectedSetNumber;
     setLoggingSet(key);
 
     try {
       const res = await api.post(
         `/api/v1/student/sessions/${session.id}/log-set/`,
         {
-          workout_exercise: exercise.id,
-          set_number: setNumber,
-          reps_done: parseInt(exercise.reps, 10) || 0,
-          load_used: exercise.suggested_load || "0",
+          workout_exercise: selectedExercise.id,
+          set_number: selectedSetNumber,
+          reps_done: Number(repsDone),
+          load_used: loadUsed || "0",
           is_done: true,
         }
       );
 
       setSession(res.data.session);
+
+      setModalVisible(false);
+      setSelectedExercise(null);
+      setSelectedSetNumber(null);
+      setRepsDone("");
+      setLoadUsed("");
     } catch {
       Alert.alert("Erro", "Não foi possível registrar a série.");
     } finally {
@@ -334,7 +366,7 @@ export default function WorkoutTodayScreen({ onLogout }: Props) {
                         <TouchableOpacity
                           key={setNum}
                           style={[styles.setBtn, done && styles.setBtnDone]}
-                          onPress={() => !done && handleLogSet(ex, setNum)}
+                          onPress={() => !done && openSetModal(ex, setNum)}
                           disabled={done || loggingSet === key}
                         >
                           {loggingSet === key ? (
@@ -375,6 +407,48 @@ export default function WorkoutTodayScreen({ onLogout }: Props) {
           <Text style={styles.emptyText}>Nenhum exercício neste dia.</Text>
         }
       />
+
+      <Modal visible={modalVisible} transparent animationType="slide">
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Registrar Série</Text>
+
+            <Text style={styles.modalLabel}>
+              {selectedExercise?.exercise_name}
+            </Text>
+
+            <TextInput
+              style={styles.input}
+              placeholder="Repetições feitas"
+              placeholderTextColor="#8b8f9f"
+              keyboardType="numeric"
+              value={repsDone}
+              onChangeText={setRepsDone}
+            />
+
+            <TextInput
+              style={styles.input}
+              placeholder="Carga usada"
+              placeholderTextColor="#8b8f9f"
+              value={loadUsed}
+              onChangeText={setLoadUsed}
+            />
+
+            <View style={styles.modalActions}>
+              <TouchableOpacity
+                style={styles.cancelBtn}
+                onPress={() => setModalVisible(false)}
+              >
+                <Text style={styles.cancelBtnText}>Cancelar</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.confirmBtn} onPress={handleLogSet}>
+                <Text style={styles.confirmBtnText}>Confirmar</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -623,5 +697,66 @@ const styles = StyleSheet.create({
   logoutText: {
     color: "#fff",
     fontWeight: "700",
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.7)",
+    justifyContent: "flex-end",
+  },
+  modalContent: {
+    backgroundColor: "#1c1f2e",
+    padding: 20,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    borderWidth: 1,
+    borderColor: "#2a2d3e",
+  },
+  modalTitle: {
+    color: "#fff",
+    fontSize: 22,
+    fontWeight: "800",
+    marginBottom: 8,
+  },
+  modalLabel: {
+    color: "#9ca3af",
+    fontSize: 14,
+    marginBottom: 16,
+  },
+  input: {
+    backgroundColor: "#0f1117",
+    borderWidth: 1,
+    borderColor: "#2a2d3e",
+    borderRadius: 12,
+    padding: 14,
+    color: "#fff",
+    fontSize: 15,
+    marginBottom: 12,
+  },
+  modalActions: {
+    flexDirection: "row",
+    gap: 10,
+    marginTop: 8,
+  },
+  cancelBtn: {
+    flex: 1,
+    backgroundColor: "#2a2d3e",
+    borderRadius: 12,
+    padding: 15,
+    alignItems: "center",
+  },
+  confirmBtn: {
+    flex: 1,
+    backgroundColor: "#4f6ef7",
+    borderRadius: 12,
+    padding: 15,
+    alignItems: "center",
+  },
+  cancelBtnText: {
+    color: "#fff",
+    fontWeight: "800",
+  },
+  confirmBtnText: {
+    color: "#fff",
+    fontWeight: "800",
   },
 });
