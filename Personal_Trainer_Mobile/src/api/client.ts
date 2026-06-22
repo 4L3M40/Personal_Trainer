@@ -3,12 +3,21 @@ import { getToken, clearTokens, saveTokens } from "../storage/token";
 
 // ⚠️  Troque pelo IP local da sua máquina (ex: 192.168.1.10)
 // No terminal: ipconfig (Windows) ou ifconfig (Mac/Linux)
-export const BASE_URL = "http://192.168.15.13:8000";
+export const BASE_URL = "http://localhost:8000";
 
 const api = axios.create({
   baseURL: BASE_URL,
   timeout: 10000,
 });
+
+let unauthorizedHandler: (() => void) | null = null;
+
+// O AuthContext registra esse handler para saber quando o refresh token
+// falhou de vez (expirado/inválido) e precisa tirar o usuário das telas
+// protegidas, mesmo sem nenhuma tela ter chamado logout() diretamente.
+export function setUnauthorizedHandler(handler: (() => void) | null) {
+  unauthorizedHandler = handler;
+}
 
 // Injeta o token em toda requisição
 api.interceptors.request.use(async (config) => {
@@ -36,6 +45,7 @@ api.interceptors.response.use(
         return api(original);
       } catch {
         await clearTokens();
+        unauthorizedHandler?.();
       }
     }
     return Promise.reject(error);
@@ -43,3 +53,4 @@ api.interceptors.response.use(
 );
 
 export default api;
+export { api };

@@ -12,8 +12,9 @@ import {
   Modal,
   TextInput,
 } from "react-native";
-import api from "../api/client";
-import { clearTokens } from "../storage/token";
+import { router } from "expo-router";
+import { api } from "../api/client";
+import { useAuth } from "../context/AuthContext";
 
 interface Exercise {
   id: number;
@@ -58,11 +59,8 @@ interface Session {
   set_logs: SetLog[];
 }
 
-interface Props {
-  onLogout: () => void;
-}
-
-export default function WorkoutTodayScreen({ onLogout }: Props) {
+export default function WorkoutTodayScreen() {
+  const { logout } = useAuth();
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [assignment, setAssignment] = useState<Assignment | null>(null);
@@ -101,8 +99,8 @@ export default function WorkoutTodayScreen({ onLogout }: Props) {
   }, [loadToday]);
 
   async function handleLogout() {
-    await clearTokens();
-    onLogout();
+    await logout();
+    router.replace("/");
   }
 
   async function handleStartWorkout() {

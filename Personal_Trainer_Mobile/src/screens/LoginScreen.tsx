@@ -11,14 +11,12 @@ import {
   Platform,
 } from "react-native";
 import axios from "axios";
+import { router } from "expo-router";
 import { BASE_URL } from "../api/client";
-import { saveTokens } from "../storage/token";
+import { useAuth } from "../context/AuthContext";
 
-interface Props {
-  onLoginSuccess: () => void;
-}
-
-export default function LoginScreen({ onLoginSuccess }: Props) {
+export default function LoginScreen() {
+  const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -34,8 +32,8 @@ export default function LoginScreen({ onLoginSuccess }: Props) {
         username: username.trim(),
         password,
       });
-      await saveTokens(res.data.access, res.data.refresh);
-      onLoginSuccess();
+      await login(res.data.access, res.data.refresh);
+      router.replace("/");
     } catch (err: any) {
       const msg =
         err.response?.status === 401
