@@ -3,7 +3,7 @@ import { getToken, clearTokens, saveTokens } from "../storage/token";
 
 // ⚠️  Troque pelo IP local da sua máquina (ex: 192.168.1.10)
 // No terminal: ipconfig (Windows) ou ifconfig (Mac/Linux)
-export const BASE_URL = "http://localhost:8000";
+export const BASE_URL = "http://192.168.15.15:8000";
 
 const api = axios.create({
   baseURL: BASE_URL,

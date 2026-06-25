@@ -40,3 +40,16 @@ class ClientDiet(models.Model):
     plan = models.ForeignKey(DietPlan, on_delete=models.PROTECT)
     applied_at = models.DateTimeField(auto_now_add=True)
     is_current = models.BooleanField(default=True)
+
+class MealLog(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="meal_logs")
+    meal = models.ForeignKey(Meal, on_delete=models.CASCADE, related_name="logs", null=True, blank=True)
+    date = models.DateField()
+    done_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("client", "meal", "date")
+        ordering = ["-date", "-done_at"]
+
+    def __str__(self) -> str:
+        return f"{self.client} • {self.meal} • {self.date}"
