@@ -1,22 +1,29 @@
 import { Stack } from "expo-router";
 import { AuthProvider, useAuth } from "../src/context/AuthContext";
+import { useEffect } from "react";
+import { router } from "expo-router";
 
 function RootNavigator() {
   const { isLoggedIn, isLoading } = useAuth();
 
-  // Enquanto carrega a sessão, mostra loading. Isso previne flickering da tela de login.
+  useEffect(() => {
+    if (!isLoading) {
+      if (isLoggedIn) {
+        router.replace("/(tabs)");
+      } else {
+        router.replace("/login");
+      }
+    }
+  }, [isLoggedIn, isLoading]);
+
   if (isLoading) {
     return null;
   }
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Protected guard={!isLoggedIn}>
-        <Stack.Screen name="login" />
-      </Stack.Protected>
-      <Stack.Protected guard={isLoggedIn}>
-        <Stack.Screen name="(tabs)" />
-      </Stack.Protected>
+      <Stack.Screen name="login" />
+      <Stack.Screen name="(tabs)" />
     </Stack>
   );
 }

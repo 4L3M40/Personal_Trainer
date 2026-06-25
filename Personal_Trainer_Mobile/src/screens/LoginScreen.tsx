@@ -33,7 +33,7 @@ export default function LoginScreen() {
         password,
       });
       await login(res.data.access, res.data.refresh);
-      router.replace("/");
+      router.replace("/(tabs)");
     } catch (err: any) {
       const msg =
         err.response?.status === 401
@@ -47,43 +47,47 @@ export default function LoginScreen() {
 
   return (
     <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
-      <View style={styles.card}>
-        <Text style={styles.logo}>💪</Text>
+      <View style={styles.content}>
         <Text style={styles.title}>Personal Trainer</Text>
-        <Text style={styles.subtitle}>Entre com sua conta</Text>
+        <Text style={styles.subtitle}>Acesse sua conta</Text>
 
         <TextInput
           style={styles.input}
           placeholder="Usuário"
-          placeholderTextColor="#888"
-          autoCapitalize="none"
+          placeholderTextColor="#999"
           value={username}
           onChangeText={setUsername}
+          editable={!loading}
         />
 
         <TextInput
           style={styles.input}
           placeholder="Senha"
-          placeholderTextColor="#888"
+          placeholderTextColor="#999"
           secureTextEntry
           value={password}
           onChangeText={setPassword}
+          editable={!loading}
         />
 
         <TouchableOpacity
-          style={[styles.btn, loading && styles.btnDisabled]}
+          style={[styles.button, loading && styles.buttonDisabled]}
           onPress={handleLogin}
           disabled={loading}
         >
           {loading ? (
-            <ActivityIndicator color="#fff" />
+            <ActivityIndicator size="small" color="#FFFFFF" />
           ) : (
-            <Text style={styles.btnText}>Entrar</Text>
+            <Text style={styles.buttonText}>Entrar</Text>
           )}
         </TouchableOpacity>
+
+        <Text style={styles.footer}>
+          Teste: aluno1 / 123456
+        </Text>
       </View>
     </KeyboardAvoidingView>
   );
@@ -92,63 +96,58 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0f1117",
+    backgroundColor: "#F8F8F8",
+  },
+  content: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 24,
-  },
-  card: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: "#1c1f2e",
-    borderRadius: 16,
-    padding: 32,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.4,
-    shadowRadius: 12,
-    elevation: 8,
-  },
-  logo: {
-    fontSize: 48,
-    marginBottom: 8,
+    paddingHorizontal: 24,
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: "700",
-    color: "#fff",
-    marginBottom: 4,
+    color: "#222",
+    marginBottom: 8,
   },
   subtitle: {
-    fontSize: 14,
-    color: "#888",
-    marginBottom: 28,
+    fontSize: 16,
+    color: "#666",
+    marginBottom: 32,
   },
   input: {
     width: "100%",
-    backgroundColor: "#2a2d3e",
-    borderRadius: 10,
-    padding: 14,
-    color: "#fff",
-    fontSize: 15,
-    marginBottom: 14,
+    height: 48,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    marginBottom: 12,
+    fontSize: 16,
     borderWidth: 1,
-    borderColor: "#3a3d50",
+    borderColor: "#E0E0E0",
+    color: "#222",
   },
-  btn: {
+  button: {
     width: "100%",
-    backgroundColor: "#4f6ef7",
-    borderRadius: 10,
-    padding: 15,
+    height: 48,
+    backgroundColor: "#FF6B35",
+    borderRadius: 8,
+    justifyContent: "center",
     alignItems: "center",
-    marginTop: 6,
+    marginTop: 16,
   },
-  btnDisabled: {
+  buttonDisabled: {
     opacity: 0.6,
   },
-  btnText: {
-    color: "#fff",
-    fontWeight: "700",
+  buttonText: {
+    color: "#FFFFFF",
     fontSize: 16,
+    fontWeight: "600",
+  },
+  footer: {
+    marginTop: 24,
+    fontSize: 12,
+    color: "#999",
+    textAlign: "center",
   },
 });
