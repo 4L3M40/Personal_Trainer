@@ -1,318 +1,167 @@
-# Couth App — Documentação de Modelagem (Fase 1)
+# 🏋️ Personal Trainer
 
+Sistema completo para gerenciamento de Personal Trainers e seus alunos, desenvolvido como projeto acadêmico utilizando **Django**, **React Native (Expo)** e **MySQL**.
 
-Este repositório contém a documentação inicial do **Couth App**, uma plataforma para **Personal Trainers** gerenciarem alunos, treinos e dietas, enquanto os alunos acompanham e registram sua evolução.
-
----
-
-## 1. Visão geral do sistema
-
-**Objetivo:** plataforma para o **Personal Trainer** gerenciar alunos e prescrever treinos/dietas, enquanto o **Aluno** executa, registra e devolve progresso/feedback.
-
-
-### Atores principais
-- **Personal Trainer (Admin Web):** cria/gerencia conteúdo e alunos.
-- **Aluno (App Mobile / Web responsivo):** consome planos e registra evolução.
-
-### Módulos da Fase 1
-- **Dashboard (admin)**
-- **Agenda**
-- **Clientes (CRM)**
-- **Perfil do cliente (abas)**  
-  - Progresso / Avaliações  
-  - Anamnese  
-  - Treinos  
-  - Dietas  
-  - Exames  
-  - Feedbacks  
-  - Logbook  
-  - Fotos  
-  - Notas
-- **Bibliotecas**  
-  - Exercícios  
-  - Treinos‑modelo  
-  - Alimentos  
-  - Cardápios‑modelo
-- **Configurações**  
-  - Anamnese builder  
-  - Conta  
-  - Identidade visual
-- **App aluno:** início, treinos, dieta, perfil, logbook, progresso, feedback.
+O objetivo é facilitar o acompanhamento dos alunos através de treinos, dietas, avaliações físicas, anamnese, exames, progresso e agenda, oferecendo uma plataforma para o Personal Trainer e um aplicativo para seus clientes.
 
 ---
 
-## 2. Requisitos Funcionais (RF) — consolidados e detalhados
+# 📖 Sobre o Projeto
 
-### RF1 — Gestão de Clientes (CRM)
-- **RF1.1** Cadastrar aluno (nome, email, telefone, nascimento, plano e vencimento manual).  
-- **RF1.2** Editar dados do aluno.  
-- **RF1.3** Inativar/excluir aluno.  
-- **RF1.4** Listar e filtrar por nome/email/status/dias restantes.  
-- **RF1.5** Visualizar perfil individual com abas.
+O Personal Trainer é dividido em dois ambientes:
 
-### RF2 — Anamnese
-- **RF2.1** Personal cria/edita formulário padrão (perguntas, tipo, opções).  
-- **RF2.2** Personal solicita novo preenchimento para um aluno.  
-- **RF2.3** Aluno responde anamnese no app.  
-- **RF2.4** Personal visualiza histórico de anamneses por aluno.
+- 💻 Painel Web para o Personal Trainer
+- 📱 Aplicativo Mobile para os alunos
 
-### RF3 — Periodização / Planos de Treino
-- **RF3.1** Personal cria plano de treino com nome, vigência, observações gerais e cardio.  
-- **RF3.2** Personal define splits (A/B/C…) por dia/grupo muscular.  
-- **RF3.3** Personal adiciona exercícios aos splits a partir da biblioteca.  
-- **RF3.4** Personal define séries, repetições, intervalo, técnicas, notas.  
-- **RF3.5** Personal reordena splits e exercícios (drag/drop).  
-- **RF3.6** Personal duplica plano/modelo para outro aluno.  
-- **RF3.7** Aluno visualiza plano, splits e detalhes.
-
-### RF4 — Planejamento de Dieta
-- **RF4.1** Personal cria plano alimentar com vigência, ingestão hídrica, observações, prescrição extra.  
-- **RF4.2** Personal define refeições (nome, horário).  
-- **RF4.3** Personal adiciona alimentos por refeição a partir da biblioteca.  
-- **RF4.4** Personal define quantidade/unidade.  
-- **RF4.5** Sistema calcula macros totais (cálculo simples na fase 1).  
-- **RF4.6** Personal duplica dieta para outro aluno.  
-- **RF4.7** Aluno visualiza plano e marca consumo (checklist opcional).
-
-### RF5 — Prescrição Suplementar / Protocolos
-- **RF5.1** Personal inclui prescrição vinculada a um plano de dieta.  
-- **RF5.2** Aluno visualiza prescrição dentro do plano alimentar.
-
-### RF6 — Acompanhamento (Avaliações / Progresso)
-- **RF6.1** Personal registra avaliações físicas (peso, % gordura, circunferências etc.).  
-- **RF6.2** Aluno registra peso periódico.  
-- **RF6.3** Aluno envia fotos (frente/costas/lado).  
-- **RF6.4** Personal visualiza gráficos e histórico.
-
-### RF7 — Exames / Documentos
-- **RF7.1** Aluno envia exames (PDF/imagem) com data.  
-- **RF7.2** Personal visualiza/download.
-
-### RF8 — Comunicação / Feedback
-- **RF8.1** Aluno envia feedback textual.  
-- **RF8.2** Personal visualiza histórico e marca como lido.  
-- **RF8.3** (Opcional fase 1) Chat simples.
-
-### RF9 — Agenda
-- **RF9.1** Personal cria/edita agendamentos com aluno.  
-- **RF9.2** Personal vê calendário semanal/mensal consolidado.  
-- **RF9.3** Aluno visualiza sua agenda.
-
-### RF10 — Bibliotecas
-- **RF10.1** CRUD “Meus Exercícios” (nome, categoria, vídeo, descrição).  
-- **RF10.2** CRUD “Meus Treinos Modelo”.  
-- **RF10.3** CRUD “Meus Alimentos” (macros).  
-- **RF10.4** CRUD “Meus Cardápios Modelo”.
+O sistema permite que o profissional organize todas as informações dos alunos em um único lugar, acompanhando sua evolução durante todo o processo.
 
 ---
 
-## 3. Requisitos Não Funcionais (RNF)
+# 🚀 Funcionalidades
 
-### RNF1 — Usabilidade  
-- **RNF1.1** O app do aluno deve permitir acesso aos treinos e dietas com no máximo **3 cliques**.  
-- **RNF1.2** O painel administrativo deve possuir **navegação lateral fixa**.  
-- **RNF1.3** O sistema deve adotar **design premium e humano**, alinhado a energia, performance e saúde.
+## Painel Web
 
-### RNF2 — Responsividade  
-- **RNF2.1** O painel administrativo deve ser **otimizado para desktop**.  
-- **RNF2.2** O app do aluno deve ser desenvolvido em abordagem **mobile-first**.  
-- **RNF2.3** A versão web do aluno deve ser **responsiva**.
-
-### RNF3 — Performance  
-- **RNF3.1** Páginas-chave (lista de clientes, visualização de treino e dieta) devem carregar em **menos de 2 segundos** em conexão 4G média.
-
-### RNF4 — Segurança  
-- **RNF4.1** Senhas devem ser armazenadas com **hash forte** (PBKDF2 ou Argon2 – padrão Django).  
-- **RNF4.2** O sistema deve utilizar **JWT ou sessão segura** para autenticação.  
-- **RNF4.3** Deve haver **controle de acesso por tipo de usuário**.
-
-### RNF5 — Disponibilidade  
-- **RNF5.1** O sistema deve garantir **99% de disponibilidade mensal** em produção.
- 
-### RNF6 — Persistência  
-- **RNF6.1** Os dados devem ser persistidos em **MySQL**, conforme modelo definido.
- 
-### RNF7 — Integrações  
-- **RNF7.1** Não serão realizadas **integrações externas na fase 1**.
- 
-### RNF8 — Conformidade Legal (LGPD)  
-- **RNF8.1** O sistema deve solicitar **consentimento explícito** para dados sensíveis (saúde, fotos e exames).  
-- **RNF8.2** Deve existir **trilha de auditoria** para acesso a dados sensíveis.
-
-### RNF9 — Prazo  
-- **RNF9.1** O lançamento do sistema deve ocorrer até **10/03/2026**.
+- Dashboard
+- Gestão de Clientes (CRM)
+- Agenda
+- Cadastro de Exercícios
+- Biblioteca de Alimentos
+- Criação de Treinos
+- Criação de Dietas
+- Avaliações Físicas
+- Anamnese
+- Feedback dos alunos
+- Upload de exames
+- Histórico de progresso
+- Notas privadas
+- Configurações do sistema
 
 ---
 
-## 4. Casos de Uso (UC) + Diagramas
+## Aplicativo do Aluno
 
-### 4.1 Diagrama geral
-Diagrama geral de casos de uso cobrindo Personal Trainer e Aluno, com módulos da fase 1.
-<img width="600" height="1190" alt="Image" src="https://github.com/user-attachments/assets/5d46b8ee-b659-4eb6-9dc0-7eaa625c6d8a" />
-
----
-
-### 4.2 Especificação textual de Casos de Uso (modelo)
-
-Abaixo estão exemplos de especificação textual no padrão adotado para o projeto.
-
-#### UC_Treino — Gerenciar Planos de Treino
-- **Ator primário:** Personal Trainer  
-- **Pré-condições:** PT autenticado; aluno existente.  
-- **Fluxo principal:**  
-  1 - PT abre perfil do aluno → aba Treinos.  
-  2 - Clica em “Criar novo treino”.  
-  3 - Informa nome, datas e observações gerais.  
-  4 - Cria splits A/B/C…  
-  5 - Adiciona exercícios da biblioteca e configura séries/reps/intervalo/etc.  
-  6 - Reordena itens se necessário.  
-  7 - Salva plano.  
-- **Pós-condição:** plano disponível para o aluno.  
-- **Exceções:** exercício inexistente na biblioteca → PT deve cadastrar antes.
-
-#### UC_Logbook — Registrar Logbook
-- **Ator primário:** Aluno  
-- **Pré-condições:** aluno autenticado; treino ativo.  
-- **Fluxo principal:**  
-  1 - Aluno abre “Iniciar treino”.  
-  2 - Para cada exercício registra carga e repetições.  
-  3 - Finaliza treino e envia.  
-- **Pós-condição:** registros aparecem para PT em “Logbook”.
-
+- Login
+- Dashboard
+- Visualização de Treinos
+- Logbook dos treinos
+- Dietas
+- Registro de peso
+- Upload de fotos
+- Envio de exames
+- Responder Anamnese
+- Feedback ao Personal
+- Agenda
+- Perfil
 
 ---
 
-## 5. Modelagem de dados vs. Django (mapeamento)
+# 🛠️ Tecnologias
 
-O modelo SQL do projeto está alinhado ao domínio. Em Django, a estrutura pré definida:
+## Backend
 
-- **accounts**
-  - `User(AbstractUser)` com campo `tipo_usuario`
-- **crm**
-  - `Cliente` (FK para personal e FK para aluno/user)
-- **library**
-  - `Exercicio`, `Alimento`, `TreinoModelo`, `CardapioModelo`
-- **workouts**
-  - `PlanoTreino`, `SplitTreino`, `ItemTreino`, `LogbookAluno`
-- **diet**
-  - `PlanoDieta`, `Refeicao`, `ItemDieta`
-- **anamnesis**
-  - `PerguntaAnamnese`, `RespostaAnamnese`
-- **progress**
-  - `AvaliacaoFisica`, `FotoProgresso`, `ExameLaboratorial`
-- **agenda**
-  - `Agendamento`
-- **feedback**
-  - `Feedback`
+- Django
+- Django REST Framework
+- Python
 
-**Observação importante:** `clientes.id_usuario_aluno` é **UNIQUE** (1:1 aluno ↔ cliente), adequado para controle de acesso.
+## Frontend Web
 
----
-## 5.1 DER / Banco de Dados
+- HTML
+- CSS
+- JavaScript
 
-![Image](https://github.com/user-attachments/assets/ad8153df-7d93-4e0b-bbb5-7a69c82f2cf7)
+## Mobile
 
-## O DER representa os módulos principais do sistema:
+- React Native
+- Expo
 
-- Usuários e Clientes: cadastros e vínculo personal ↔ aluno
+## Banco de Dados
 
-- Treinos: planos, splits, exercícios e logbook do aluno
-
-- Dietas: planos alimentares, refeições, alimentos e checklist de consumo
-
-- Anamnese: perguntas padrão, envios e respostas do aluno
-
-- Acompanhamento e Gestão: avaliações físicas, progresso (peso/fotos), exames, agenda, feedbacks e notas do personal.
+- MySQL
 
 ---
 
-## 6. Wireframes 
+# 🗄️ Estrutura do Banco
 
-### Wireframes mínimos por persona
+O banco foi modelado utilizando MySQL seguindo os requisitos da Fase 1.
 
-#### Admin Web (Personal)
+Principais entidades:
 
-## Login
-<img width="1536" height="1024" alt="Image" src="https://github.com/user-attachments/assets/9e51572f-4aed-493d-8f21-14ab04ac3cd9" />
-
-## Dashboard  
-![Image](https://github.com/user-attachments/assets/d278693b-313e-4876-8bd4-dbe8edb1bd15)
-
-## Clientes (lista + filtros + botão novo)  
-<img width="1919" height="815" alt="Image" src="https://github.com/user-attachments/assets/1ec30028-8815-40aa-8088-a73d54a3617b" />
-
-## Perfil do cliente (abas): Progresso, Anamnese, Avaliações, Dietas, Treinos, Exames, Feedbacks, Logbook, Fotos, Notas  
-<img width="1918" height="1022" alt="Image" src="https://github.com/user-attachments/assets/edcd30c6-cb94-42e8-bc49-4d429883fe26" />
-
-## Bibliotecas: 
-**Exercícios**
-![Image](https://github.com/user-attachments/assets/5e55e44d-4b16-44ed-8101-19f59e85a742)
-
-**Treinos‑modelo** 
-<img width="1919" height="1029" alt="Image" src="https://github.com/user-attachments/assets/80830945-9629-48ee-82d7-658e99f7c352" />
-
-**Alimentos** 
-<img width="1919" height="819" alt="Image" src="https://github.com/user-attachments/assets/a9b893d3-a603-4abe-a42d-9d4abb73d10e" />
-
-**Cardápios‑modelo** 
-<img width="1919" height="1028" alt="Image" src="https://github.com/user-attachments/assets/c1888625-15bb-4bf7-96cf-7d59772dd3f1" />
-
-## Agenda  
-<img width="1917" height="1027" alt="Image" src="https://github.com/user-attachments/assets/5d2b45da-0613-46b5-96f5-e728cbefa3e8" />
-
-## Configurações (builder de anamnese + conta)
-<img width="1919" height="818" alt="Image" src="https://github.com/user-attachments/assets/d0bd28b9-b324-4450-8145-67cf0fc9538b" />
+- Usuários
+- Clientes
+- Exercícios
+- Alimentos
+- Planos de Treino
+- Splits
+- Itens de Treino
+- Logbook
+- Dietas
+- Refeições
+- Itens da Dieta
+- Avaliações
+- Anamnese
+- Fotos
+- Exames
+- Feedbacks
+- Agenda
+- Notas
 
 ---
 
-# App Aluno
-## Login 
-<img width="512" height="768" alt="Image" src="https://github.com/user-attachments/assets/b6b45409-48c2-4467-9721-a2c00a37549b" />
+# 📋 Requisitos Funcionais
 
-## Início (peso + pendências + mensagens) 
-<img width="1901" height="832" alt="Image" src="https://github.com/user-attachments/assets/57b53ff4-0a39-4c60-bae9-69e98cb50da7" />
-
-## Treinos (lista, split semanal, detalhe/iniciar, logbook) 
-<img width="1899" height="830" alt="Image" src="https://github.com/user-attachments/assets/b3869607-7bb6-4f60-b2e3-c02e20f8deb4" />
-
-## Dieta (lista, detalhe, refeições do dia) 
-<img width="1900" height="836" alt="Image" src="https://github.com/user-attachments/assets/8bdc923d-076d-46c8-b85b-5608cc9c6509" />
-
-## Prgresso
-**Fotos**
-<img width="1900" height="829" alt="Image" src="https://github.com/user-attachments/assets/95bea171-c952-46ff-a8db-a18eea478b01" />
-
-**Medidas**
-<img width="1901" height="829" alt="Image" src="https://github.com/user-attachments/assets/99d0dd22-eb4d-4753-82b6-79f2fe64ae18" />
-
-**Gráficos**
-<img width="1900" height="826" alt="Image" src="https://github.com/user-attachments/assets/796a816c-67fa-4a8e-8d65-c3ddb74f6a4d" />
-
-**Exames**
-<img width="1899" height="834" alt="Image" src="https://github.com/user-attachments/assets/bcb6d554-8acf-4ccc-a38f-534696f7f982" />
-
-## Perfil/Utilitários (exames, avaliações, fotos, anamneses, logout)
-<img width="1902" height="833" alt="image" src="https://github.com/user-attachments/assets/9ef31018-f13c-405e-b024-9e2523091d33" />
+- Gestão de Clientes
+- Treinos
+- Dietas
+- Avaliações
+- Progresso
+- Feedback
+- Agenda
+- Bibliotecas
+- Exames
+- Anamnese
 
 ---
 
-## 7. Frontend: HTML/CSS vs outra tecnologia
+# 🔒 Requisitos Não Funcionais
 
-### Rota A — Django + Templates + HTMX/Alpine (rápida)
-- Admin web com Django templates + Tailwind.  
-- Interações dinâmicas com HTMX + Alpine.js.  
-- Vantagem: entrega rápida, simples, sem SPA. Boa para fase 1..
+- Interface responsiva
+- Mobile First
+- Navegação intuitiva
+- Segurança utilizando autenticação
+- Controle de acesso por perfil
+- Persistência em MySQL
+- Tempo de resposta inferior a 2 segundos
 
-### Rota B — Backend Django (API REST) + Front separado
-- SPA para admin/aluno: React/Next ou Vue/Nuxt.  
-- Mobile: Flutter ou React Native.  
-- Vantagem: experiência mais “app‑like”.  
-- Custo/tempo maior agora.
-
-- Começar com **Rota A** (admin server‑rendered + Tailwind).  
-O app aluno pode ser web responsivo nesta fase; migrar para mobile nativo na fase 2 se necessário.
 ---
 
+# 📂 Estrutura do Projeto
 
+```
+Personal_Trainer/
+│
+├── Backend/
+│
+├── Personal_Trainer_Mobile/
+│
+├── Banco/
+│
+├── Documentação/
+│
+└── README.md
+```
 
+---
 
+# 🎯 Objetivo
+
+Desenvolver uma plataforma completa para acompanhamento físico entre Personal Trainer e Aluno, centralizando todas as informações em um único sistema.
+
+---
+
+# 👨‍💻 Desenvolvedor
+
+**Evandro Wagencknecht**
+
+Curso Técnico em Desenvolvimento de Sistemas - SENAI
+
+``Python`` • ``Django`` • ``React Native`` • ``MySQL`` • ``Java``
