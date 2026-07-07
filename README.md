@@ -1,57 +1,76 @@
 # 🏋️ Personal Trainer
 
-Sistema completo para gerenciamento de Personal Trainers e seus alunos, desenvolvido como projeto acadêmico utilizando **Django**, **React Native (Expo)** e **MySQL**.
+> 🚧 Projeto em desenvolvimento
 
-O objetivo é facilitar o acompanhamento dos alunos através de treinos, dietas, avaliações físicas, anamnese, exames, progresso e agenda, oferecendo uma plataforma para o Personal Trainer e um aplicativo para seus clientes.
+Sistema completo para gerenciamento de **Personal Trainers** e seus alunos, desenvolvido com **Django**, **Django REST Framework**, **React Native (Expo)** e **MySQL**.
+
+O objetivo é oferecer uma plataforma moderna para acompanhamento físico, permitindo que o Personal Trainer gerencie clientes, prescreva treinos e dietas, acompanhe avaliações físicas e monitore toda a evolução dos alunos através de um painel web e um aplicativo mobile.
 
 ---
 
 # 📖 Sobre o Projeto
 
-O Personal Trainer é dividido em dois ambientes:
+O **Personal Trainer** é uma plataforma composta por dois ambientes principais:
 
-- 💻 Painel Web para o Personal Trainer
-- 📱 Aplicativo Mobile para os alunos
+- 💻 **Painel Web** para o Personal Trainer
+- 📱 **Aplicativo Mobile** para os alunos
 
-O sistema permite que o profissional organize todas as informações dos alunos em um único lugar, acompanhando sua evolução durante todo o processo.
+A plataforma centraliza todas as informações do aluno em um único sistema, facilitando o gerenciamento de treinos, dietas, avaliações, exames, progresso físico e comunicação entre Personal Trainer e cliente.
+
+---
+
+# 🏗️ Arquitetura
+
+O projeto é dividido em três módulos principais:
+
+- 💻 **Backend (API REST)** desenvolvido em Django REST Framework
+- 🌐 **Painel Web** para gerenciamento dos alunos
+- 📱 **Aplicativo Mobile** desenvolvido em React Native (Expo)
+
+Todos os módulos compartilham um banco de dados **MySQL**, garantindo sincronização das informações entre o painel administrativo e o aplicativo dos alunos.
 
 ---
 
 # 🚀 Funcionalidades
 
-## Painel Web
+## 💻 Painel Web (Personal Trainer)
 
 - Dashboard
 - Gestão de Clientes (CRM)
 - Agenda
 - Cadastro de Exercícios
+- Biblioteca de Exercícios
 - Biblioteca de Alimentos
-- Criação de Treinos
-- Criação de Dietas
+- Biblioteca de Treinos
+- Biblioteca de Cardápios
+- Criação e gerenciamento de Treinos
+- Criação e gerenciamento de Dietas
 - Avaliações Físicas
 - Anamnese
+- Upload de Exames
+- Histórico de Progresso
 - Feedback dos alunos
-- Upload de exames
-- Histórico de progresso
 - Notas privadas
-- Configurações do sistema
+- Configurações da conta
+- Configuração da identidade visual
 
 ---
 
-## Aplicativo do Aluno
+## 📱 Aplicativo do Aluno
 
 - Login
 - Dashboard
 - Visualização de Treinos
-- Logbook dos treinos
+- Execução de Treinos
+- Logbook
 - Dietas
-- Registro de peso
-- Upload de fotos
-- Envio de exames
+- Registro de Peso
+- Upload de Fotos
+- Upload de Exames
 - Responder Anamnese
-- Feedback ao Personal
+- Envio de Feedback
 - Agenda
-- Perfil
+- Perfil do usuário
 
 ---
 
@@ -59,14 +78,14 @@ O sistema permite que o profissional organize todas as informações dos alunos 
 
 ## Backend
 
+- Python
 - Django
 - Django REST Framework
-- Python
 
 ## Frontend Web
 
-- HTML
-- CSS
+- HTML5
+- CSS3
 - JavaScript
 
 ## Mobile
@@ -78,13 +97,22 @@ O sistema permite que o profissional organize todas as informações dos alunos 
 
 - MySQL
 
+## Ferramentas
+
+- Git
+- GitHub
+- VS Code
+- MySQL Workbench
+- Draw.io
+- Figma
+
 ---
 
-# 🗄️ Estrutura do Banco
+# 🗄️ Banco de Dados
 
-O banco foi modelado utilizando MySQL seguindo os requisitos da Fase 1.
+O banco de dados foi modelado em **MySQL**, seguindo uma arquitetura relacional para atender todos os requisitos da plataforma.
 
-Principais entidades:
+### Principais entidades
 
 - Usuários
 - Clientes
@@ -94,31 +122,35 @@ Principais entidades:
 - Splits
 - Itens de Treino
 - Logbook
-- Dietas
+- Planos de Dieta
 - Refeições
 - Itens da Dieta
-- Avaliações
-- Anamnese
-- Fotos
+- Avaliações Físicas
+- Perguntas de Anamnese
+- Respostas de Anamnese
+- Fotos de Progresso
 - Exames
 - Feedbacks
 - Agenda
-- Notas
+- Notas do Personal
 
 ---
 
 # 📋 Requisitos Funcionais
 
+O sistema contempla os seguintes módulos:
+
 - Gestão de Clientes
 - Treinos
 - Dietas
-- Avaliações
+- Avaliações Físicas
+- Anamnese
 - Progresso
 - Feedback
 - Agenda
 - Bibliotecas
 - Exames
-- Anamnese
+- Configurações
 
 ---
 
@@ -128,9 +160,26 @@ Principais entidades:
 - Mobile First
 - Navegação intuitiva
 - Segurança utilizando autenticação
-- Controle de acesso por perfil
-- Persistência em MySQL
-- Tempo de resposta inferior a 2 segundos
+- Controle de acesso por perfil de usuário
+- Persistência de dados em MySQL
+- API REST
+- Tempo médio de resposta inferior a 2 segundos
+- Arquitetura escalável
+
+---
+
+# 📚 Documentação
+
+Toda a documentação do projeto está disponível na pasta **Documentação/**.
+
+Ela contém:
+
+- 📄 Análise de Requisitos
+- 🗄️ Modelo SQL
+- 🧩 Diagrama Entidade-Relacionamento (DER)
+- 🗺️ Diagrama Geral do Sistema
+- 🎨 Wireframes
+- 💾 Scripts do Banco de Dados
 
 ---
 
@@ -146,15 +195,40 @@ Personal_Trainer/
 ├── Banco/
 │
 ├── Documentação/
+│   ├── Wireframes/
+│   ├── Diagramas/
+│   ├── Modelo_SQL.pdf
+│   ├── Analise_de_Requisitos.pdf
+│   └── Scripts/
 │
 └── README.md
 ```
 
 ---
 
+# 📌 Roadmap
+
+- [x] Levantamento de requisitos
+- [x] Modelagem do banco de dados
+- [x] Wireframes
+- [ ] Desenvolvimento da API REST
+- [ ] Desenvolvimento do Painel Web
+- [ ] Desenvolvimento do Aplicativo Mobile
+- [ ] Testes
+- [ ] Deploy
+- [ ] Publicação da primeira versão
+
+---
+
 # 🎯 Objetivo
 
-Desenvolver uma plataforma completa para acompanhamento físico entre Personal Trainer e Aluno, centralizando todas as informações em um único sistema.
+Desenvolver uma plataforma completa para gerenciamento de Personal Trainers e acompanhamento de alunos, centralizando treinos, dietas, avaliações, anamnese, exames e evolução física em um único ambiente.
+
+---
+
+# 📷 Preview
+
+Em breve serão adicionadas imagens do sistema, telas do painel administrativo e do aplicativo mobile.
 
 ---
 
@@ -162,6 +236,14 @@ Desenvolver uma plataforma completa para acompanhamento físico entre Personal T
 
 **Evandro Wagencknecht**
 
-Curso Técnico em Desenvolvimento de Sistemas - SENAI
+Desenvolvedor de Software
 
-``Python`` • ``Django`` • ``React Native`` • ``MySQL`` • ``Java``
+### Tecnologias
+
+`Python` • `Django` • `Django REST Framework` • `React Native` • `Expo` • `JavaScript` • `HTML5` • `CSS3` • `MySQL` • `Git`
+
+---
+
+## ⭐ Status
+
+Este projeto está em desenvolvimento e recebe melhorias contínuas, com foco na construção de uma plataforma completa para gestão de Personal Trainers e acompanhamento de alunos.
