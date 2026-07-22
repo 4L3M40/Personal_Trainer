@@ -1,6 +1,6 @@
 # 🏋️ Personal Trainer
 
-> 🚧 Projeto em desenvolvimento
+> 🚧 Projeto em desenvolvimento.
 
 Sistema completo para gerenciamento de **Personal Trainers** e seus alunos, desenvolvido com **Django**, **Django REST Framework**, **React Native (Expo)** e **MySQL**.
 
