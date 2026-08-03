@@ -1,4 +1,4 @@
-# 🏋️ Personal Trainer
+# 🏋️ Personal Trainer.
 
 > 🚧 Projeto em desenvolvimento
 
